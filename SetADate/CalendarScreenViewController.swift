@@ -25,6 +25,7 @@ class CalendarScreenViewController: UIViewController, UITabBarDelegate {
         selectionBar.delegate = self
         selectionBar.selectedItem = selectionBar.items?.first
         performTabBarConfigurations()
+        print("something somewhere")
     }
     
     
