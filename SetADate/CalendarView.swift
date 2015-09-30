@@ -13,6 +13,7 @@ class CalendarView: UIView {
     var currentDate: NSDate?
     let calendarInUse:NSCalendar?
     let buttonSize = UIScreen.mainScreen().bounds.size.width / 7.0
+    var delegate: CalendarViewDelegate?
     
     // View should not be called from storyboard!
     required init?(coder aDecoder: NSCoder) {
@@ -49,6 +50,7 @@ class CalendarView: UIView {
                 }
                 let buttonFrame = CGRectMake(buttonXPosition, buttonYPosition, self.buttonSize, self.buttonSize)
                 let dayButton = CalendarDayButton(frame: buttonFrame, day: dayCounter)
+                dayButton.addTarget(self, action: "dayButtonClicked:", forControlEvents: .TouchUpInside)
                 addSubview(dayButton)
                 dayCounter++
                 buttonXPosition += self.buttonSize
@@ -64,4 +66,17 @@ class CalendarView: UIView {
         return Int(ceil(Double(numberOfDaysLeft) / 7.0) + 1)
     }
     
+    func dayButtonClicked(sender: CalendarDayButton) {
+        if let delegate = self.delegate {
+            delegate.dayButtonClicked(sender)
+        }
+    }
+    
+    func resetDayButtonBackgrounds (){
+        // Reset background colors
+    }
+}
+
+protocol CalendarViewDelegate {
+    func dayButtonClicked (sender: CalendarDayButton)
 }

@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class CalendarViewController: UIViewController {
+class CalendarViewController: UIViewController, CalendarViewDelegate {
     // Calendar View Controller Methods and propreties. Create calendar and functionalities
     @IBOutlet weak var monthLabel: UILabel!
     var currentDate: NSDate?
@@ -28,8 +28,9 @@ class CalendarViewController: UIViewController {
         self.calendarRect?.size.height = self.view.frame.height - self.monthLabel.frame.height
         self.currentDate = NSDate()
         self.calendar = NSCalendar.currentCalendar()
-        let theCalendarView = CalendarView(frame: self.calendarRect!, date: self.currentDate!, calendar: self.calendar!)
-        self.view.addSubview(theCalendarView)
+        self.calendarView = CalendarView(frame: self.calendarRect!, date: self.currentDate!, calendar: self.calendar!)
+        self.calendarView!.delegate = self
+        self.view.addSubview(self.calendarView!)
     }
     
     @IBAction func nextMonthButtonPressed(sender: UIButton) {
@@ -37,8 +38,8 @@ class CalendarViewController: UIViewController {
     @IBAction func previousMonthButtonPressed(sender: UIButton) {
     }
 
-    func dayButtonPressed(sender: UIButton) {
-        print("day button pressed")
+    func dayButtonClicked(sender: CalendarDayButton) {
+        sender.backgroundColor = UIColor.greenColor()
     }
     
 }

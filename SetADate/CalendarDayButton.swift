@@ -28,6 +28,4 @@ class CalendarDayButton: UIButton {
         setTitleColor(UIColor.blackColor(), forState: .Normal)
         enabled = true
     }
-
-
 }

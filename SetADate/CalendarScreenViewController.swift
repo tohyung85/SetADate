@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class CalendarScreenViewController: UIViewController, UITabBarDelegate {
+class CalendarScreenViewController: UIViewController, UITabBarDelegate, CalendarViewDelegate {
 
     @IBOutlet weak var selectionBar: UITabBar!
     @IBOutlet weak var calendarScreenBarButton: UITabBarItem!
@@ -25,8 +25,6 @@ class CalendarScreenViewController: UIViewController, UITabBarDelegate {
         selectionBar.delegate = self
         selectionBar.selectedItem = selectionBar.items?.first
         performTabBarConfigurations()
-        print("something somewhere")
-        print("test git commit")
     }
     
     
@@ -65,5 +63,9 @@ class CalendarScreenViewController: UIViewController, UITabBarDelegate {
     func tabBar(tabBar: UITabBar, didSelectItem item: UITabBarItem) {
         tabBar.selectedItem = item
         print("bar button item selected: %@",item)
+    }
+    
+    func dayButtonClicked(button: CalendarDayButton) {
+        print("button pressed: %@", button)
     }
 }
