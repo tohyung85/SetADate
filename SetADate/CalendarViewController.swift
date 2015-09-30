@@ -16,10 +16,11 @@ class CalendarViewController: UIViewController, CalendarViewDelegate {
     var calendar: NSCalendar?
     var calendarRect: CGRect?
     var calendarView: CalendarView?
+    var masterVC: CalendarScreenViewController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("calendarViewController loaded")
+        print("master VC: %@", masterVC)
     }
     
     override func viewWillAppear(animated: Bool) {

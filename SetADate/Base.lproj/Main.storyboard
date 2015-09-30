@@ -62,7 +62,7 @@
                             <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FR8-JE-Gzp">
                                 <rect key="frame" x="0.0" y="95" width="414" height="360"/>
                                 <connections>
-                                    <segue destination="pyR-lL-chC" kind="embed" id="ihK-XK-AEQ"/>
+                                    <segue destination="pyR-lL-chC" kind="embed" identifier="displayContainerView" id="ihK-XK-AEQ"/>
                                 </connections>
                             </containerView>
                         </subviews>

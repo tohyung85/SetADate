@@ -21,7 +21,7 @@ class CalendarScreenViewController: UIViewController, UITabBarDelegate, Calendar
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("calendarScreenViewController loaded")
+        print("calendarScreenViewController loaded: %@",self)
         selectionBar.delegate = self
         selectionBar.selectedItem = selectionBar.items?.first
         performTabBarConfigurations()
@@ -67,5 +67,14 @@ class CalendarScreenViewController: UIViewController, UITabBarDelegate, Calendar
     
     func dayButtonClicked(button: CalendarDayButton) {
         print("button pressed: %@", button)
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if let segueIdentifier = segue.identifier {
+            if segueIdentifier == "displayContainerView" {
+                let calendarVC = segue.destinationViewController as! CalendarViewController
+                calendarVC.masterVC = self
+            }
+        }
     }
 }
