@@ -15,6 +15,7 @@ class CalendarScreenViewController: UIViewController, UITabBarDelegate, Calendar
     @IBOutlet weak var calendarScreenBarButton: UITabBarItem!
     @IBOutlet weak var groupsBarButtonItems: UITabBarItem!
     @IBOutlet weak var pendingRequestsBarButtonItem: UITabBarItem!
+    var calendarDayButtons: [CalendarDayButton] = [CalendarDayButton]()
     
     let themeBackGroundColor = UIColor(red: 59.0/255, green: 186.0/255, blue: 174.0/255, alpha: 1.0)
     let themeForeGroundColor = UIColor.whiteColor()
@@ -66,16 +67,21 @@ class CalendarScreenViewController: UIViewController, UITabBarDelegate, Calendar
     }
     
     func dayButtonClicked(button: CalendarDayButton) {
+        for buttons in self.calendarDayButtons {
+            if buttons.dayButtonState == .Chosen{
+                buttons.dayButtonState = .Nothing
+                buttons.stateChanged()
+            }
+        }
         button.dayButtonState = .Chosen
         button.stateChanged()
-        print("something")
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if let segueIdentifier = segue.identifier {
             if segueIdentifier == "displayContainerView" {
-                let calendarVC = segue.destinationViewController as! CalendarViewController
-                calendarVC.masterVC = self
+                let calendarVC = segue.destinationViewController as? CalendarViewController
+                calendarVC!.masterVC = self
             }
         }
     }

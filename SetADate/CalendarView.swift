@@ -14,6 +14,7 @@ class CalendarView: UIView {
     let calendarInUse:NSCalendar?
     let buttonSize = UIScreen.mainScreen().bounds.size.width / 7.0
     var delegate: CalendarViewDelegate?
+    var dayButtonsArray: [CalendarDayButton]?
     
     // View should not be called from storyboard!
     required init?(coder aDecoder: NSCoder) {
@@ -32,6 +33,7 @@ class CalendarView: UIView {
         let numberOfDays = date.numberOfDaysInMonth(calendar)
         let weekday = date.firstWeekdayOfMonth(calendar)
         let numberOfRows = self.numberOfRows(numberOfDays, firstDayOfMonth: weekday)
+        self.dayButtonsArray = [CalendarDayButton]()
         
         var dayCounter = 1
         var buttonYPosition = 0.0 as CGFloat
@@ -46,12 +48,15 @@ class CalendarView: UIView {
                 let buttonFrame = CGRectMake(buttonXPosition, buttonYPosition, self.buttonSize, self.buttonSize)
                 let dayButton = CalendarDayButton(frame: buttonFrame, day: dayCounter)
                 dayButton.addTarget(self, action: "dayButtonClicked:", forControlEvents: .TouchUpInside)
+                self.dayButtonsArray?.append(dayButton)
                 addSubview(dayButton)
                 dayCounter++
                 buttonXPosition += self.buttonSize
             }
             buttonYPosition += self.buttonSize
         }
+//        print("array in calendarview %@",self.dayButtonsArray)
+//        self.delegate?.calendarDayButtons = self.dayButtonsArray!
     }
     
     private func numberOfRows (numberOfDays: Int, firstDayOfMonth: Int) -> Int {
@@ -63,7 +68,6 @@ class CalendarView: UIView {
     
     func dayButtonClicked(sender: CalendarDayButton) {
         // Do not set to private. when day button is clicked the day button class needs to access the method in the calendar view file.
-        print("daybutton click in calendar view")
         if let delegate = self.delegate {
             delegate.dayButtonClicked(sender)
         }
@@ -71,5 +75,6 @@ class CalendarView: UIView {
 }
 
 protocol CalendarViewDelegate {
+//    var calendarDayButtons: [CalendarDayButton] {get set}
     func dayButtonClicked (sender: CalendarDayButton)
 }

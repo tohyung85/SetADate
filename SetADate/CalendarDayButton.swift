@@ -25,7 +25,7 @@ class CalendarDayButton: UIButton {
         super.init(frame: frame)
         setTitle(String(day), forState: .Normal)
         setTitleColor(UIColor.blackColor(), forState: .Normal)
-        dayButtonState = .None
+        self.dayButtonState = .Nothing
         enabled = true
     }
     
@@ -35,14 +35,18 @@ class CalendarDayButton: UIButton {
             self.backgroundColor = UIColor.blueColor()
         case .Chosen:
             self.backgroundColor = UIColor.redColor()
-        case .None:
+        case .Nothing:
             self.backgroundColor = UIColor.whiteColor()
         }
+    }
+    
+    func describe() -> String {
+        return "Button Day \(self.dayOftheMonth), ButtonState \(self.dayButtonState)"
     }
 }
 
 enum possibleButtonState {
     case Today
     case Chosen
-    case None
+    case Nothing
 }

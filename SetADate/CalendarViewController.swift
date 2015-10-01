@@ -17,6 +17,7 @@ class CalendarViewController: UIViewController {
     var calendarRect: CGRect?
     var calendarView: CalendarView?
     var masterVC: CalendarScreenViewController?
+    var calendarViewButtons: [CalendarDayButton]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,6 +32,8 @@ class CalendarViewController: UIViewController {
         self.calendar = NSCalendar.currentCalendar()
         self.calendarView = CalendarView(frame: self.calendarRect!, date: self.currentDate!, calendar: self.calendar!)
         self.calendarView!.delegate = masterVC
+        self.calendarViewButtons = self.calendarView?.dayButtonsArray
+        self.masterVC?.calendarDayButtons = self.calendarViewButtons!
         self.view.addSubview(self.calendarView!)
     }
     
