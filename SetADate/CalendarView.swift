@@ -28,11 +28,6 @@ class CalendarView: UIView {
         self.loadCalendar(date, calendar: calendar)
     }
 
-//      Use Delegates
-//    func buttonPressed(sender: UIButton) {
-//        print("buttonPressd")
-//    }
-    
     func loadCalendar(date: NSDate, calendar: NSCalendar) {
         let numberOfDays = date.numberOfDaysInMonth(calendar)
         let weekday = date.firstWeekdayOfMonth(calendar)
@@ -66,14 +61,10 @@ class CalendarView: UIView {
         return Int(ceil(Double(numberOfDaysLeft) / 7.0) + 1)
     }
     
-    func dayButtonClicked(sender: CalendarDayButton) {
+    private func dayButtonClicked(sender: CalendarDayButton) {
         if let delegate = self.delegate {
             delegate.dayButtonClicked(sender)
         }
-    }
-    
-    func resetDayButtonBackgrounds (){
-        // Reset background colors
     }
 }
 

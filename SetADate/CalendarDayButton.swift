@@ -10,8 +10,7 @@ import Foundation
 import UIKit
 
 class CalendarDayButton: UIButton {
-    var isChosen: Bool = false
-    var isToday: Bool = false
+    var dayButtonState: possibleButtonState?
     var dayFrame: CGRect?
     let dayOftheMonth: Int?
     
@@ -26,6 +25,24 @@ class CalendarDayButton: UIButton {
         super.init(frame: frame)
         setTitle(String(day), forState: .Normal)
         setTitleColor(UIColor.blackColor(), forState: .Normal)
+        dayButtonState = .None
         enabled = true
     }
+    
+    func stateChanged () {
+        switch self.dayButtonState! {
+        case .Today:
+            self.backgroundColor = UIColor.blueColor()
+        case .Chosen:
+            self.backgroundColor = UIColor.redColor()
+        case .None:
+            self.backgroundColor = UIColor.whiteColor()
+        }
+    }
+}
+
+enum possibleButtonState {
+    case Today
+    case Chosen
+    case None
 }
