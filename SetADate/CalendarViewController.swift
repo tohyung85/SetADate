@@ -32,8 +32,8 @@ class CalendarViewController: UIViewController {
         self.calendar = NSCalendar.currentCalendar()
         self.calendarView = CalendarView(frame: self.calendarRect!, date: self.currentDate!, calendar: self.calendar!)
         self.calendarView!.delegate = masterVC
-        self.calendarViewButtons = self.calendarView?.dayButtonsArray
-        self.masterVC?.calendarDayButtons = self.calendarViewButtons!
+        self.masterVC?.calendarDayButtons = (self.calendarView?.dayButtonsArray)!
+        self.masterVC?.today = self.calendarView?.today
         self.view.addSubview(self.calendarView!)
     }
     

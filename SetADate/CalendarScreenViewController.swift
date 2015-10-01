@@ -16,6 +16,7 @@ class CalendarScreenViewController: UIViewController, UITabBarDelegate, Calendar
     @IBOutlet weak var groupsBarButtonItems: UITabBarItem!
     @IBOutlet weak var pendingRequestsBarButtonItem: UITabBarItem!
     var calendarDayButtons: [CalendarDayButton] = [CalendarDayButton]()
+    var today: CalendarDayButton?
     
     let themeBackGroundColor = UIColor(red: 59.0/255, green: 186.0/255, blue: 174.0/255, alpha: 1.0)
     let themeForeGroundColor = UIColor.whiteColor()
@@ -67,9 +68,16 @@ class CalendarScreenViewController: UIViewController, UITabBarDelegate, Calendar
     }
     
     func dayButtonClicked(button: CalendarDayButton) {
+        if button.dayButtonState == .Today {
+            self.today = button
+        }
         for buttons in self.calendarDayButtons {
-            if buttons.dayButtonState == .Chosen{
-                buttons.dayButtonState = .Nothing
+            if buttons.dayButtonState == .Chosen {
+                if buttons == self.today {
+                    buttons.dayButtonState = .Today
+                } else {
+                    buttons.dayButtonState = .Nothing
+                }
                 buttons.stateChanged()
             }
         }
