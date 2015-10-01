@@ -68,6 +68,7 @@ class CalendarScreenViewController: UIViewController, UITabBarDelegate, Calendar
     func dayButtonClicked(button: CalendarDayButton) {
         button.dayButtonState = .Chosen
         button.stateChanged()
+        print("something")
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

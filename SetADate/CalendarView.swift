@@ -61,7 +61,9 @@ class CalendarView: UIView {
         return Int(ceil(Double(numberOfDaysLeft) / 7.0) + 1)
     }
     
-    private func dayButtonClicked(sender: CalendarDayButton) {
+    func dayButtonClicked(sender: CalendarDayButton) {
+        // Do not set to private. when day button is clicked the day button class needs to access the method in the calendar view file.
+        print("daybutton click in calendar view")
         if let delegate = self.delegate {
             delegate.dayButtonClicked(sender)
         }
