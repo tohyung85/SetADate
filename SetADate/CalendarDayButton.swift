@@ -35,6 +35,8 @@ class CalendarDayButton: UIButton {
             self.backgroundColor = UIColor.blueColor()
         case .Chosen:
             self.backgroundColor = UIColor.redColor()
+        case .ChosenAndToday:
+            self.backgroundColor = UIColor.redColor()
         case .Nothing:
             self.backgroundColor = UIColor.whiteColor()
         }
@@ -48,5 +50,6 @@ class CalendarDayButton: UIButton {
 enum possibleButtonState {
     case Today
     case Chosen
+    case ChosenAndToday
     case Nothing
 }

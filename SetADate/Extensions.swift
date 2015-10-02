@@ -78,6 +78,25 @@ extension NSDate {
         dateComponents.day = 1
         let firstDay = calendar.dateFromComponents(dateComponents)
         return calendar.component(.Weekday, fromDate: firstDay!)
+        
+    }
+    
+    func dateOfFirstDayOfMonthYear (calendar: NSCalendar, components: NSDateComponents) -> NSDate? {
+        if let date = calendar.dateFromComponents(components){
+            return date
+        } else {
+            return nil
+        }
+    }
+}
+
+extension NSCalendar {
+    func dayMonthYearComponentsFromDate (date: NSDate) -> NSDateComponents {
+        let dateComponents = self.components(.Month, fromDate: date)
+        dateComponents.year = self.component(.Year, fromDate: date)
+        dateComponents.day = self.component(.Day, fromDate: date)
+        
+        return dateComponents
     }
 }
 

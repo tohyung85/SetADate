@@ -15,7 +15,6 @@ class CalendarView: UIView {
     let buttonSize = UIScreen.mainScreen().bounds.size.width / 7.0
     var delegate: CalendarViewDelegate?
     var dayButtonsArray: [CalendarDayButton]?
-    var today: CalendarDayButton?
     
     // View should not be called from storyboard!
     required init?(coder aDecoder: NSCoder) {
@@ -23,7 +22,6 @@ class CalendarView: UIView {
     }
     
     init(frame: CGRect, date: NSDate, calendar: NSCalendar) {
-        print("Initializing calendar")
         self.currentDate = date
         self.calendarInUse = calendar
         super.init(frame: frame)
@@ -35,10 +33,11 @@ class CalendarView: UIView {
         let weekday = date.firstWeekdayOfMonth(calendar)
         let numberOfRows = self.numberOfRows(numberOfDays, firstDayOfMonth: weekday)
         self.dayButtonsArray = [CalendarDayButton]()
+        let defaultChosenDate = calendar.component(.Day, fromDate: date)
         var day = 0
         
         let today = NSDate()
-        if calendar.component(.Month, fromDate: today) == calendar.component(.Month, fromDate: self.currentDate!) {
+        if calendar.component(.Month, fromDate: today) == calendar.component(.Month, fromDate: self.currentDate!) && calendar.component(.Year, fromDate: today) == calendar.component(.Year, fromDate: self.currentDate!) {
             day = calendar.component(.Day, fromDate: today)
         }
         
@@ -49,9 +48,6 @@ class CalendarView: UIView {
             let startDay = i == 1 ? weekday : 1
             buttonXPosition = 0.0 + CGFloat(startDay - 1) * self.buttonSize
             for var j = startDay; j <= 7; j++ {
-                if dayCounter == numberOfDays {
-                    break
-                }
                 let buttonFrame = CGRectMake(buttonXPosition, buttonYPosition, self.buttonSize, self.buttonSize)
                 let dayButton = CalendarDayButton(frame: buttonFrame, day: dayCounter)
                 dayButton.addTarget(self, action: "dayButtonClicked:", forControlEvents: .TouchUpInside)
@@ -59,9 +55,20 @@ class CalendarView: UIView {
                     dayButton.dayButtonState = .Today
                     dayButton.stateChanged()
                 }
+                if defaultChosenDate == dayCounter {
+                    dayButton.dayButtonState = .Chosen
+                    dayButton.stateChanged()
+                }
+                if defaultChosenDate == dayCounter && day == dayCounter {
+                    dayButton.dayButtonState = .ChosenAndToday
+                    dayButton.stateChanged()
+                }
                 self.dayButtonsArray?.append(dayButton)
                 addSubview(dayButton)
                 dayCounter++
+                if dayCounter > numberOfDays {
+                    break
+                }
                 buttonXPosition += self.buttonSize
             }
             buttonYPosition += self.buttonSize
@@ -84,5 +91,6 @@ class CalendarView: UIView {
 }
 
 protocol CalendarViewDelegate {
+    var calendarDayButtons: [CalendarDayButton] {get set}
     func dayButtonClicked (sender: CalendarDayButton)
 }

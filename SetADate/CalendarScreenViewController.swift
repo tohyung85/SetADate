@@ -16,25 +16,17 @@ class CalendarScreenViewController: UIViewController, UITabBarDelegate, Calendar
     @IBOutlet weak var groupsBarButtonItems: UITabBarItem!
     @IBOutlet weak var pendingRequestsBarButtonItem: UITabBarItem!
     var calendarDayButtons: [CalendarDayButton] = [CalendarDayButton]()
-    var today: CalendarDayButton?
+
     
     let themeBackGroundColor = UIColor(red: 59.0/255, green: 186.0/255, blue: 174.0/255, alpha: 1.0)
     let themeForeGroundColor = UIColor.whiteColor()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("calendarScreenViewController loaded: %@",self)
         selectionBar.delegate = self
         selectionBar.selectedItem = selectionBar.items?.first
         performTabBarConfigurations()
     }
-    
-    
-    @IBAction func rightArrowButtonPressed(sender: UIButton) {
-        //Switch month when button pressed
-    }
-    
-    
     
     func performTabBarConfigurations() {
         // Sets default text color of tab bar items
@@ -64,24 +56,26 @@ class CalendarScreenViewController: UIViewController, UITabBarDelegate, Calendar
     
     func tabBar(tabBar: UITabBar, didSelectItem item: UITabBarItem) {
         tabBar.selectedItem = item
-        print("bar button item selected: %@",item)
     }
     
     func dayButtonClicked(button: CalendarDayButton) {
-        if button.dayButtonState == .Today {
-            self.today = button
-        }
         for buttons in self.calendarDayButtons {
-            if buttons.dayButtonState == .Chosen {
-                if buttons == self.today {
-                    buttons.dayButtonState = .Today
-                } else {
-                    buttons.dayButtonState = .Nothing
-                }
-                buttons.stateChanged()
+            let buttonState = buttons.dayButtonState!
+            switch buttonState {
+            case .Today:
+                buttons.dayButtonState = .Today
+            case .ChosenAndToday:
+                buttons.dayButtonState = .Today
+            default:
+                buttons.dayButtonState = .Nothing
             }
+            buttons.stateChanged()
         }
-        button.dayButtonState = .Chosen
+        if button.dayButtonState == .Today || button.dayButtonState == .ChosenAndToday {
+            button.dayButtonState = .ChosenAndToday
+        } else {
+            button.dayButtonState = .Chosen
+        }
         button.stateChanged()
     }
     
