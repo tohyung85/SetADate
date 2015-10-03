@@ -100,3 +100,10 @@ extension NSCalendar {
     }
 }
 
+extension UIColor {
+    class func themeColor() -> UIColor {
+        let color = UIColor(red: 59.0 / 255, green: 186.0 / 255, blue: 174.0 / 255, alpha: 1.0)
+        return color
+    }
+}
+

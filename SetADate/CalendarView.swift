@@ -16,6 +16,8 @@ class CalendarView: UIView {
     var delegate: CalendarViewDelegate?
     var dayButtonsArray: [CalendarDayButton]?
     var calendarHeight : CGFloat?
+    let daysOfWeek: [Int: String] = [0: "S", 1: "M", 2: "T", 3: "W", 4: "T", 5: "F", 6: "S"]
+    let daysOfWeekLabelHeight: CGFloat = 25.0
     
     // View should not be called from storyboard!
     required init?(coder aDecoder: NSCoder) {
@@ -38,14 +40,19 @@ class CalendarView: UIView {
         let defaultChosenDate = calendar.component(.Day, fromDate: date)
         var day = 0
         
+        self.setDaysOfWeek()
+        
         let today = NSDate()
         if calendar.component(.Month, fromDate: today) == calendar.component(.Month, fromDate: self.currentDate!) && calendar.component(.Year, fromDate: today) == calendar.component(.Year, fromDate: self.currentDate!) {
             day = calendar.component(.Day, fromDate: today)
         }
+
         
-        var dayCounter = 1
         var buttonYPosition = 0.0 as CGFloat
         var buttonXPosition = 0.0 as CGFloat
+        var dayCounter = 1
+        buttonYPosition = self.daysOfWeekLabelHeight
+        buttonXPosition = 0.0
         for var i = 1; i <= numberOfRows; i++ {
             let startDay = i == 1 ? weekday : 1
             buttonXPosition = 0.0 + CGFloat(startDay - 1) * self.buttonSize
@@ -75,7 +82,23 @@ class CalendarView: UIView {
             }
             buttonYPosition += self.buttonSize
         }
-        self.frame.size.height = CGFloat(numberOfRows) * self.buttonSize
+        self.frame.size.height = CGFloat(numberOfRows) * self.buttonSize + self.daysOfWeekLabelHeight
+    }
+    
+    func setDaysOfWeek() {
+        var buttonXPosition = 0.0 as CGFloat
+        for var k = 0; k < 7 ; k++ {
+            let label = UILabel(frame: CGRectMake(buttonXPosition, 0.0, self.buttonSize, self.daysOfWeekLabelHeight))
+            label.backgroundColor = UIColor.themeColor()
+            label.text = self.daysOfWeek[k]
+            label.textColor = UIColor.whiteColor()
+            label.textAlignment = .Center
+            label.font = UIFont(name: label.font.fontName, size: 12)
+            label.layer.borderWidth = 0.5
+            label.layer.borderColor = UIColor.themeColor().CGColor
+            self.addSubview(label)
+            buttonXPosition += self.buttonSize
+        }
     }
     
     private func numberOfRows (numberOfDays: Int, firstDayOfMonth: Int) -> Int {
