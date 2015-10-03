@@ -33,9 +33,6 @@ class CalendarViewController: UIViewController {
         self.calendarRect = self.view.frame
         self.calendarRect?.origin.y = self.monthLabel.frame.height
         self.calendarRect?.size.height = self.view.frame.height - self.monthLabel.frame.height
-        //
-        // INCLUDE WEEKDAY HEADER
-        //
     }
     
     override func viewDidAppear(animated: Bool) {
