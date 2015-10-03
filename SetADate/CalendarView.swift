@@ -15,6 +15,7 @@ class CalendarView: UIView {
     let buttonSize = UIScreen.mainScreen().bounds.size.width / 7.0
     var delegate: CalendarViewDelegate?
     var dayButtonsArray: [CalendarDayButton]?
+    var calendarHeight : CGFloat?
     
     // View should not be called from storyboard!
     required init?(coder aDecoder: NSCoder) {
@@ -32,6 +33,7 @@ class CalendarView: UIView {
         let numberOfDays = date.numberOfDaysInMonth(calendar)
         let weekday = date.firstWeekdayOfMonth(calendar)
         let numberOfRows = self.numberOfRows(numberOfDays, firstDayOfMonth: weekday)
+        self.calendarHeight = CGFloat(numberOfRows) * self.buttonSize
         self.dayButtonsArray = [CalendarDayButton]()
         let defaultChosenDate = calendar.component(.Day, fromDate: date)
         var day = 0
@@ -73,6 +75,7 @@ class CalendarView: UIView {
             }
             buttonYPosition += self.buttonSize
         }
+        self.frame.size.height = CGFloat(numberOfRows) * self.buttonSize
     }
     
     private func numberOfRows (numberOfDays: Int, firstDayOfMonth: Int) -> Int {

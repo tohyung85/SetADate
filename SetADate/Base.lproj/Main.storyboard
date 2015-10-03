@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Calendar Screen View Controller-->
@@ -16,37 +17,50 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gbI-f3-w9t">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gbI-f3-w9t">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="46"/>
                                 <color key="backgroundColor" red="0.23137254901960785" green="0.72941176470588232" blue="0.68235294117647061" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="46" id="doD-Q0-Bgv"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="highlightedColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <size key="shadowOffset" width="0.0" height="0.0"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jSg-ev-nTr">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jSg-ev-nTr">
                                 <rect key="frame" x="349" y="16" width="57" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="57" id="2rk-LG-got"/>
+                                    <constraint firstAttribute="height" constant="30" id="Qca-Mu-NiB"/>
+                                </constraints>
                                 <state key="normal" title="Settings"/>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="SetADate" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LWu-bG-A0O">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SetADate" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LWu-bG-A0O">
                                 <rect key="frame" x="20" y="20" width="96" height="26"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="26" id="WqD-P0-Bdj"/>
+                                    <constraint firstAttribute="width" constant="96" id="of9-W2-0hj"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="yoN-h2-nyU">
-                                <rect key="frame" x="0.0" y="454" width="414" height="227"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fwl-Wa-fns">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fwl-Wa-fns">
                                 <rect key="frame" x="0.0" y="681" width="414" height="55"/>
                                 <color key="backgroundColor" red="0.23137254900000001" green="0.72941176470000002" blue="0.68235294120000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="55" id="dyt-MR-lED"/>
+                                </constraints>
                                 <state key="normal" image="plusIcon"/>
                             </button>
-                            <tabBar contentMode="scaleToFill" fixedFrame="YES" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XkC-bm-8xN">
+                            <tabBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XkC-bm-8xN">
                                 <rect key="frame" x="0.0" y="46" width="414" height="49"/>
                                 <color key="backgroundColor" red="0.23137254900000001" green="0.72941176470000002" blue="0.68235294120000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="49" id="B87-U2-i64"/>
+                                </constraints>
                                 <items>
                                     <tabBarItem title="Calendar" image="calendarIcon" id="tjp-zm-A2q"/>
                                     <tabBarItem title="Groups" image="groupsImage" id="CPn-X9-INO"/>
@@ -59,18 +73,74 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </tabBar>
-                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FR8-JE-Gzp">
-                                <rect key="frame" x="0.0" y="95" width="414" height="360"/>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FR8-JE-Gzp">
+                                <rect key="frame" x="0.0" y="95" width="414" height="419"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="360" id="wXu-nD-dSD"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="wXu-nD-dSD"/>
+                                    </mask>
+                                </variation>
                                 <connections>
                                     <segue destination="pyR-lL-chC" kind="embed" identifier="displayContainerView" id="ihK-XK-AEQ"/>
                                 </connections>
                             </containerView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="yoN-h2-nyU">
+                                <rect key="frame" x="0.0" y="516" width="414" height="165"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="165" id="0pJ-2R-OcT"/>
+                                    <constraint firstAttribute="height" constant="227" id="lD4-K6-Ep3"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="lD4-K6-Ep3"/>
+                                    </mask>
+                                </variation>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="LWu-bG-A0O" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="0bP-QO-gqg"/>
+                            <constraint firstItem="jSg-ev-nTr" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" constant="16" id="2hl-8K-wAx"/>
+                            <constraint firstItem="XkC-bm-8xN" firstAttribute="top" secondItem="gbI-f3-w9t" secondAttribute="bottom" id="4r7-b8-ygA"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="FR8-JE-Gzp" secondAttribute="trailing" constant="-20" id="5yj-Vv-I97"/>
+                            <constraint firstItem="gbI-f3-w9t" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="5zo-RT-VkI"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="yoN-h2-nyU" secondAttribute="trailing" constant="-20" id="8qf-Ru-fay"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="fwl-Wa-fns" secondAttribute="bottom" id="CJ1-Zo-aBk"/>
+                            <constraint firstItem="FR8-JE-Gzp" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="D1H-UL-cvj"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="jSg-ev-nTr" secondAttribute="trailing" constant="-12" id="Dvl-1c-K8V"/>
+                            <constraint firstItem="yoN-h2-nyU" firstAttribute="top" secondItem="FR8-JE-Gzp" secondAttribute="bottom" constant="-1" id="EKA-g3-bnX"/>
+                            <constraint firstItem="yoN-h2-nyU" firstAttribute="top" secondItem="FR8-JE-Gzp" secondAttribute="bottom" constant="-1" id="HDT-Z9-WYS"/>
+                            <constraint firstItem="gbI-f3-w9t" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" id="Hh4-JZ-x3M"/>
+                            <constraint firstItem="fwl-Wa-fns" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="OQO-j5-P8a"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="XkC-bm-8xN" secondAttribute="trailing" constant="-20" id="Q5w-nA-OqI"/>
+                            <constraint firstItem="FR8-JE-Gzp" firstAttribute="top" secondItem="XkC-bm-8xN" secondAttribute="bottom" id="Ti4-y5-4AN"/>
+                            <constraint firstItem="XkC-bm-8xN" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="UN9-5X-EEM"/>
+                            <constraint firstItem="fwl-Wa-fns" firstAttribute="top" secondItem="yoN-h2-nyU" secondAttribute="bottom" id="UnF-ll-fCE"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="fwl-Wa-fns" secondAttribute="trailing" constant="-20" id="Wm7-H4-ZeA"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="gbI-f3-w9t" secondAttribute="trailing" constant="-20" id="d7B-Bu-r8b"/>
+                            <constraint firstItem="yoN-h2-nyU" firstAttribute="top" secondItem="FR8-JE-Gzp" secondAttribute="bottom" constant="2" id="gdZ-6t-IJ3"/>
+                            <constraint firstItem="yoN-h2-nyU" firstAttribute="top" secondItem="XkC-bm-8xN" secondAttribute="bottom" constant="359" id="uW4-4g-7fO"/>
+                            <constraint firstItem="yoN-h2-nyU" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="xBy-37-26M"/>
+                            <constraint firstItem="LWu-bG-A0O" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="ySi-kf-aJ4"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="EKA-g3-bnX"/>
+                                <exclude reference="HDT-Z9-WYS"/>
+                                <exclude reference="uW4-4g-7fO"/>
+                            </mask>
+                        </variation>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                     <connections>
+                        <outlet property="addEventsButton" destination="fwl-Wa-fns" id="C57-2X-OGq"/>
                         <outlet property="calendarScreenBarButton" destination="tjp-zm-A2q" id="yAV-bS-iM7"/>
+                        <outlet property="calendarView" destination="FR8-JE-Gzp" id="zJE-G3-OQL"/>
+                        <outlet property="eventsTable" destination="yoN-h2-nyU" id="NbH-qP-f6t"/>
                         <outlet property="groupsBarButtonItems" destination="CPn-X9-INO" id="fIN-yw-Wb5"/>
                         <outlet property="pendingRequestsBarButtonItem" destination="8UZ-vR-BhC" id="1pN-Bz-Q1z"/>
                         <outlet property="selectionBar" destination="XkC-bm-8xN" id="yQL-uw-UKe"/>
@@ -89,7 +159,7 @@
                         <viewControllerLayoutGuide type="bottom" id="2xn-CG-gaN"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="kIp-N7-0hA">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="360"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="419"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="September 2015" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z1V-IX-Jzt">

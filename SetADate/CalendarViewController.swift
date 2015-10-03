@@ -33,6 +33,16 @@ class CalendarViewController: UIViewController {
         self.calendarRect = self.view.frame
         self.calendarRect?.origin.y = self.monthLabel.frame.height
         self.calendarRect?.size.height = self.view.frame.height - self.monthLabel.frame.height
+        //
+        // INCLUDE WEEKDAY HEADER
+        //
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        // Update view has to be done here. 
+        // Changes to the elements in Main View can only be done after view did appear in main VC called. 
+        // VC life cycle dictates that view did appear for main VC called only after view will appear for Container VC.
+        
         self.updateView()
     }
     
@@ -70,6 +80,11 @@ class CalendarViewController: UIViewController {
         self.masterVC?.calendarDayButtons = (self.calendarView?.dayButtonsArray)!
         self.view.addSubview(self.calendarView!)
         self.monthLabel.text = self.stringFromComponents(self.currentComponents!)
+        self.view.frame.size.height = (self.calendarView?.frame.size.height)! + self.monthLabel.frame.size.height
+
+        // Update Table and calendar view layouts
+        self.masterVC?.eventsTable.frame.origin.y = (self.masterVC?.selectionBar.frame.origin.y)! + (self.masterVC?.selectionBar.frame.size.height)! + self.view.frame.size.height
+        self.masterVC?.eventsTable.frame.size.height = (self.masterVC?.addEventsButton.frame.origin.y)! - (self.masterVC?.eventsTable.frame.origin.y)!
     }
     
     func stringFromComponents (components:NSDateComponents) -> String {
