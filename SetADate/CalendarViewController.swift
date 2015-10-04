@@ -9,14 +9,13 @@
 import Foundation
 import UIKit
 
-class CalendarViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class CalendarViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, CalendarViewDelegate  {
     // Calendar View Controller Methods and propreties. Create calendar and functionalities
     @IBOutlet weak var monthLabel: UILabel!
     var currentDate: NSDate?
     var calendar: NSCalendar?
     var calendarRect: CGRect?
     var calendarView: CalendarView?
-    var masterVC: CalendarScreenViewController?
     var calendarViewButtons: [CalendarDayButton]?
     var todayComponents: NSDateComponents?
     var currentComponents: NSDateComponents?
@@ -69,8 +68,7 @@ class CalendarViewController: UIViewController, UITableViewDelegate, UITableView
             }
         }
         self.calendarView = CalendarView(frame: self.calendarRect!, date: self.currentDate!, calendar: self.calendar!)
-        self.calendarView!.delegate = masterVC
-        self.masterVC?.calendarDayButtons = (self.calendarView?.dayButtonsArray)!
+        self.calendarView!.delegate = self
         self.view.addSubview(self.calendarView!)
         self.monthLabel.text = self.stringFromComponents(self.currentComponents!)
         
@@ -115,6 +113,27 @@ class CalendarViewController: UIViewController, UITableViewDelegate, UITableView
         string += String(components.year)
         
         return string
+    }
+    
+    func dayButtonClicked(button: CalendarDayButton) {
+        for buttons in (self.calendarView?.dayButtonsArray)! {
+            let buttonState = buttons.dayButtonState!
+            switch buttonState {
+            case .Today:
+                buttons.dayButtonState = .Today
+            case .ChosenAndToday:
+                buttons.dayButtonState = .Today
+            default:
+                buttons.dayButtonState = .Nothing
+            }
+            buttons.stateChanged()
+        }
+        if button.dayButtonState == .Today || button.dayButtonState == .ChosenAndToday {
+            button.dayButtonState = .ChosenAndToday
+        } else {
+            button.dayButtonState = .Chosen
+        }
+        button.stateChanged()
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

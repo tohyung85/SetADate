@@ -9,13 +9,12 @@
 import Foundation
 import UIKit
 
-class CalendarScreenViewController: UIViewController, UITabBarDelegate, CalendarViewDelegate {
+class CalendarScreenViewController: UIViewController, UITabBarDelegate{
 
     @IBOutlet weak var selectionBar: UITabBar!
     @IBOutlet weak var calendarScreenBarButton: UITabBarItem!
     @IBOutlet weak var groupsBarButtonItems: UITabBarItem!
     @IBOutlet weak var pendingRequestsBarButtonItem: UITabBarItem!
-    var calendarDayButtons: [CalendarDayButton] = [CalendarDayButton]()
     
     let themeBackGroundColor = UIColor(red: 59.0/255, green: 186.0/255, blue: 174.0/255, alpha: 1.0)
     let themeForeGroundColor = UIColor.whiteColor()
@@ -57,32 +56,11 @@ class CalendarScreenViewController: UIViewController, UITabBarDelegate, Calendar
         tabBar.selectedItem = item
     }
     
-    func dayButtonClicked(button: CalendarDayButton) {
-        for buttons in self.calendarDayButtons {
-            let buttonState = buttons.dayButtonState!
-            switch buttonState {
-            case .Today:
-                buttons.dayButtonState = .Today
-            case .ChosenAndToday:
-                buttons.dayButtonState = .Today
-            default:
-                buttons.dayButtonState = .Nothing
-            }
-            buttons.stateChanged()
-        }
-        if button.dayButtonState == .Today || button.dayButtonState == .ChosenAndToday {
-            button.dayButtonState = .ChosenAndToday
-        } else {
-            button.dayButtonState = .Chosen
-        }
-        button.stateChanged()
-    }
-    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if let segueIdentifier = segue.identifier {
             if segueIdentifier == "displayContainerView" {
-                let calendarVC = segue.destinationViewController as? CalendarViewController
-                calendarVC!.masterVC = self
+//                let calendarVC = segue.destinationViewController as? CalendarViewController
+////                calendarVC!.masterVC = self
             }
         }
     }

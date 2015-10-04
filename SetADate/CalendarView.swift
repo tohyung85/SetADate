@@ -117,6 +117,6 @@ class CalendarView: UIView {
 }
 
 protocol CalendarViewDelegate {
-    var calendarDayButtons: [CalendarDayButton] {get set}
+//    var calendarDayButtons: [CalendarDayButton] {get set}
     func dayButtonClicked (sender: CalendarDayButton)
 }

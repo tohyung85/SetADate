@@ -76,7 +76,7 @@
                                     </mask>
                                 </variation>
                                 <connections>
-                                    <segue destination="pyR-lL-chC" kind="embed" identifier="displayContainerView" id="ihK-XK-AEQ"/>
+                                    <segue destination="pyR-lL-chC" kind="embed" identifier="displayContainerView" id="SUC-rq-guP"/>
                                 </connections>
                             </containerView>
                         </subviews>
@@ -118,7 +118,29 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="223" y="361"/>
+            <point key="canvasLocation" x="-353" y="477"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="UPW-0T-xfg">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8DH-0D-Okz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController id="Ma6-UX-6bz" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="wyD-qB-gSq"/>
+                        <viewControllerLayoutGuide type="bottom" id="wjg-Bq-21x"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Cwc-rP-bjX">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
+                    <connections>
+                        <segue destination="pyR-lL-chC" kind="custom" identifier="calendarScreen" customClass="EmptySegue" id="DOE-ve-kAv"/>
+                    </connections>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="156" y="482"/>
         </scene>
         <!--Calendar View Controller-->
         <scene sceneID="Pey-qs-pzz">
@@ -129,7 +151,7 @@
                         <viewControllerLayoutGuide type="bottom" id="2xn-CG-gaN"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="kIp-N7-0hA">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="641"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="September 2015" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z1V-IX-Jzt">
@@ -157,7 +179,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A1Y-mp-0Xx">
-                                <rect key="frame" x="0.0" y="586" width="414" height="55"/>
+                                <rect key="frame" x="0.0" y="681" width="414" height="55"/>
                                 <color key="backgroundColor" red="0.23137254900000001" green="0.72941176470000002" blue="0.68235294120000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="55" id="JLj-cC-bU3"/>
@@ -165,7 +187,7 @@
                                 <state key="normal" image="plusIcon"/>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="55" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="SYy-aN-1i9">
-                                <rect key="frame" x="0.0" y="421" width="414" height="165"/>
+                                <rect key="frame" x="0.0" y="516" width="414" height="165"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="165" id="HKx-Kg-5BW"/>
@@ -232,6 +254,7 @@
                             <constraint firstItem="SYy-aN-1i9" firstAttribute="leading" secondItem="kIp-N7-0hA" secondAttribute="leadingMargin" constant="-20" id="z1X-4r-Zym"/>
                         </constraints>
                     </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                     <connections>
                         <outlet property="addEventsButton" destination="A1Y-mp-0Xx" id="hmX-uK-IID"/>
                         <outlet property="eventsTable" destination="SYy-aN-1i9" id="vuT-vS-Au8"/>
@@ -241,7 +264,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FkA-90-A8Z" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-214" y="149"/>
+            <point key="canvasLocation" x="820" y="545"/>
         </scene>
     </scenes>
     <resources>
@@ -252,4 +275,7 @@
         <image name="pendingRequests" width="42" height="42"/>
         <image name="plusIcon" width="35" height="35"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="SUC-rq-guP"/>
+    </inferredMetricsTieBreakers>
 </document>
