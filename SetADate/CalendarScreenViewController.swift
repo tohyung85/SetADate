@@ -9,17 +9,13 @@
 import Foundation
 import UIKit
 
-class CalendarScreenViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITabBarDelegate, CalendarViewDelegate {
+class CalendarScreenViewController: UIViewController, UITabBarDelegate, CalendarViewDelegate {
 
     @IBOutlet weak var selectionBar: UITabBar!
     @IBOutlet weak var calendarScreenBarButton: UITabBarItem!
     @IBOutlet weak var groupsBarButtonItems: UITabBarItem!
     @IBOutlet weak var pendingRequestsBarButtonItem: UITabBarItem!
     var calendarDayButtons: [CalendarDayButton] = [CalendarDayButton]()
-    var calendarViewHeight: CGFloat?
-    @IBOutlet weak var eventsTable: UITableView!
-    @IBOutlet weak var calendarView: UIView!
-    @IBOutlet weak var addEventsButton: UIButton!
     
     let themeBackGroundColor = UIColor(red: 59.0/255, green: 186.0/255, blue: 174.0/255, alpha: 1.0)
     let themeForeGroundColor = UIColor.whiteColor()
@@ -89,24 +85,6 @@ class CalendarScreenViewController: UIViewController, UITableViewDelegate, UITab
                 calendarVC!.masterVC = self
             }
         }
-    }
-    
-    
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 9
-    }
-    
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cellIdentifier = "cell"
-        
-        let tableViewCell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! CalendarScreenTableViewCell
-        tableViewCell.groupNameLabel.text = "Avengers"
-        tableViewCell.eventNameLabel.text = "Assemble!"
-        tableViewCell.timeLabel.text = "2pm - 3pm"
-        tableViewCell.locationLabel.text = "Stark Tower"
-        tableViewCell.groupImage.image = UIImage(named: "testImage")
-        
-        return tableViewCell
     }
     
 }
