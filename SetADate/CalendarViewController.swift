@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class CalendarViewController: UIViewController {
+class CalendarViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     // Calendar View Controller Methods and propreties. Create calendar and functionalities
     @IBOutlet weak var monthLabel: UILabel!
     var currentDate: NSDate?
@@ -20,6 +20,9 @@ class CalendarViewController: UIViewController {
     var calendarViewButtons: [CalendarDayButton]?
     var todayComponents: NSDateComponents?
     var currentComponents: NSDateComponents?
+    @IBOutlet weak var eventsTable: UITableView!
+    @IBOutlet weak var addEventsButton: UIButton!
+    @IBOutlet weak var tableViewHeightConstraint: NSLayoutConstraint!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,22 +30,15 @@ class CalendarViewController: UIViewController {
         self.currentDate = NSDate()
         self.todayComponents = self.calendar?.dayMonthYearComponentsFromDate(self.currentDate!)
         self.currentComponents = self.todayComponents
+
     }
     
     override func viewWillAppear(animated: Bool) {
         self.calendarRect = self.view.frame
         self.calendarRect?.origin.y = self.monthLabel.frame.height
         self.calendarRect?.size.height = self.view.frame.height - self.monthLabel.frame.height
-    }
-    
-    override func viewDidAppear(animated: Bool) {
-        // Update view has to be done here. 
-        // Changes to the elements in Main View can only be done after view did appear in main VC called. 
-        // VC life cycle dictates that view did appear for main VC called only after view will appear for Container VC.
-        
         self.updateView()
     }
-    
     
     @IBAction func nextMonthButtonPressed(sender: UIButton) {
         if self.currentComponents?.month == 12 {
@@ -77,11 +73,12 @@ class CalendarViewController: UIViewController {
         self.masterVC?.calendarDayButtons = (self.calendarView?.dayButtonsArray)!
         self.view.addSubview(self.calendarView!)
         self.monthLabel.text = self.stringFromComponents(self.currentComponents!)
-        self.view.frame.size.height = (self.calendarView?.frame.size.height)! + self.monthLabel.frame.size.height
-
-        // Update Table and calendar view layouts
-        self.masterVC?.eventsTable.frame.origin.y = (self.masterVC?.selectionBar.frame.origin.y)! + (self.masterVC?.selectionBar.frame.size.height)! + self.view.frame.size.height
-        self.masterVC?.eventsTable.frame.size.height = (self.masterVC?.addEventsButton.frame.origin.y)! - (self.masterVC?.eventsTable.frame.origin.y)!
+        
+        // Have to use this to set height for table view due to constraints used in story board.
+        UIView.animateWithDuration(0.0, animations: { () -> Void in
+            self.tableViewHeightConstraint.constant = self.view.frame.size.height - (self.calendarView?.frame.height)! - self.monthLabel.frame.size.height - self.addEventsButton.frame.size.height
+            self.view.layoutIfNeeded()
+        })
     }
     
     func stringFromComponents (components:NSDateComponents) -> String {
@@ -120,4 +117,20 @@ class CalendarViewController: UIViewController {
         return string
     }
     
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 9
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cellIdentifier = "cell"
+        
+        let tableViewCell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! CalendarScreenTableViewCell
+        tableViewCell.groupNameLabel.text = "Avengers"
+        tableViewCell.eventNameLabel.text = "Assemble!"
+        tableViewCell.timeLabel.text = "2pm - 3pm"
+        tableViewCell.locationLabel.text = "Stark Tower"
+        tableViewCell.groupImage.image = UIImage(named: "testImage")
+        
+        return tableViewCell
+    }
 }
