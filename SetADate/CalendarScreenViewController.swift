@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class CalendarScreenViewController: UIViewController, UITabBarDelegate, CalendarViewDelegate {
+class CalendarScreenViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITabBarDelegate, CalendarViewDelegate {
 
     @IBOutlet weak var selectionBar: UITabBar!
     @IBOutlet weak var calendarScreenBarButton: UITabBarItem!
@@ -91,5 +91,18 @@ class CalendarScreenViewController: UIViewController, UITabBarDelegate, Calendar
         }
     }
     
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 9
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cellIdentifier = "cell"
+        
+        let tableViewCell = UITableViewCell(style: .Default, reuseIdentifier: cellIdentifier)
+        tableViewCell.textLabel?.text = "Test Cell"
+        
+        return tableViewCell
+    }
     
 }
