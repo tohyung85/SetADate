@@ -99,8 +99,12 @@ class CalendarScreenViewController: UIViewController, UITableViewDelegate, UITab
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cellIdentifier = "cell"
         
-        let tableViewCell = UITableViewCell(style: .Default, reuseIdentifier: cellIdentifier)
-        tableViewCell.textLabel?.text = "Test Cell"
+        let tableViewCell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! CalendarScreenTableViewCell
+        tableViewCell.groupNameLabel.text = "Avengers"
+        tableViewCell.eventNameLabel.text = "Assemble!"
+        tableViewCell.timeLabel.text = "2pm - 3pm"
+        tableViewCell.locationLabel.text = "Stark Tower"
+        tableViewCell.groupImage.image = UIImage(named: "testImage")
         
         return tableViewCell
     }
