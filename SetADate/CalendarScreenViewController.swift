@@ -48,11 +48,6 @@ class CalendarScreenViewController: UIViewController, UITabBarDelegate{
         }
     }
     
-    
-    func tabBar(tabBar: UITabBar, willBeginCustomizingItems items: [UITabBarItem]) {
-        tabBar.selectedItem = tabBar.items?.first
-    }
-    
     func tabBar(tabBar: UITabBar, didSelectItem item: UITabBarItem) {
         self.containerVC?.newView = self.selectionBar.items?.indexOf(item)
         self.containerVC!.changeContainerView()
