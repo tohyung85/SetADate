@@ -16,13 +16,14 @@ class CalendarScreenViewController: UIViewController, UITabBarDelegate{
     @IBOutlet weak var groupsBarButtonItems: UITabBarItem!
     @IBOutlet weak var pendingRequestsBarButtonItem: UITabBarItem!
     
+    var containerVC : ContainerViewController?
+    
     let themeBackGroundColor = UIColor(red: 59.0/255, green: 186.0/255, blue: 174.0/255, alpha: 1.0)
     let themeForeGroundColor = UIColor.whiteColor()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         selectionBar.delegate = self
-        selectionBar.selectedItem = selectionBar.items?.first
         performTabBarConfigurations()
     }
     
@@ -53,14 +54,23 @@ class CalendarScreenViewController: UIViewController, UITabBarDelegate{
     }
     
     func tabBar(tabBar: UITabBar, didSelectItem item: UITabBarItem) {
+        self.containerVC?.newView = self.selectionBar.items?.indexOf(item)
+        self.containerVC!.changeContainerView()
         tabBar.selectedItem = item
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if let segueIdentifier = segue.identifier {
             if segueIdentifier == "displayContainerView" {
-//                let calendarVC = segue.destinationViewController as? CalendarViewController
-////                calendarVC!.masterVC = self
+                self.containerVC = segue.destinationViewController as? ContainerViewController
+                if let containerVC = self.containerVC {
+                    // note: prepareForSegue called before viewDidLoad
+                    if self.selectionBar.selectedItem == nil {
+                        self.selectionBar.selectedItem = self.selectionBar.items?.first
+                    }
+                    let itemSelected = self.selectionBar.selectedItem
+                    containerVC.currentView = self.selectionBar.items?.indexOf(itemSelected!)
+                }
             }
         }
     }

@@ -76,7 +76,7 @@
                                     </mask>
                                 </variation>
                                 <connections>
-                                    <segue destination="pyR-lL-chC" kind="embed" identifier="displayContainerView" id="SUC-rq-guP"/>
+                                    <segue destination="Ma6-UX-6bz" kind="embed" identifier="displayContainerView" id="EhM-Su-vlc"/>
                                 </connections>
                             </containerView>
                         </subviews>
@@ -120,11 +120,10 @@
             </objects>
             <point key="canvasLocation" x="-353" y="477"/>
         </scene>
-        <!--View Controller-->
+        <!--Container View Controller-->
         <scene sceneID="UPW-0T-xfg">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="8DH-0D-Okz" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <viewController id="Ma6-UX-6bz" sceneMemberID="viewController">
+                <viewController id="Ma6-UX-6bz" customClass="ContainerViewController" customModule="SetADate" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="wyD-qB-gSq"/>
                         <viewControllerLayoutGuide type="bottom" id="wjg-Bq-21x"/>
@@ -135,17 +134,15 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
-                    <connections>
-                        <segue destination="pyR-lL-chC" kind="custom" identifier="calendarScreen" customClass="EmptySegue" id="DOE-ve-kAv"/>
-                    </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8DH-0D-Okz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="156" y="482"/>
         </scene>
         <!--Calendar View Controller-->
         <scene sceneID="Pey-qs-pzz">
             <objects>
-                <viewController id="pyR-lL-chC" customClass="CalendarViewController" customModule="SetADate" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="calendarView" useStoryboardIdentifierAsRestorationIdentifier="YES" id="pyR-lL-chC" customClass="CalendarViewController" customModule="SetADate" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="3e1-sD-JgD"/>
                         <viewControllerLayoutGuide type="bottom" id="2xn-CG-gaN"/>
@@ -264,7 +261,61 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FkA-90-A8Z" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="820" y="545"/>
+            <point key="canvasLocation" x="632" y="477"/>
+        </scene>
+        <!--Groups Screen View Controller-->
+        <scene sceneID="8ir-6o-f0m">
+            <objects>
+                <viewController storyboardIdentifier="groupsView" useStoryboardIdentifierAsRestorationIdentifier="YES" id="LeX-C9-NQQ" customClass="GroupsScreenViewController" customModule="SetADate" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="abZ-7D-f0T"/>
+                        <viewControllerLayoutGuide type="bottom" id="w65-rH-AsV"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="kMK-9s-89m">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Group View" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3cz-7h-oYE">
+                                <rect key="frame" x="163" y="163" width="89" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tWn-ju-FOc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="632" y="1285"/>
+        </scene>
+        <!--Pending Requests View Controller-->
+        <scene sceneID="SiX-6F-idB">
+            <objects>
+                <viewController storyboardIdentifier="pendingRequestsView" useStoryboardIdentifierAsRestorationIdentifier="YES" id="q61-qw-CMo" customClass="PendingRequestsViewController" customModule="SetADate" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="4iz-6c-nnZ"/>
+                        <viewControllerLayoutGuide type="bottom" id="a15-pp-Mwm"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Kt3-fI-YcH">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Pending Requests" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UUZ-OE-9m7">
+                                <rect key="frame" x="138" y="242" width="138" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lTH-0M-Ym2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="632" y="2083"/>
         </scene>
     </scenes>
     <resources>
@@ -275,7 +326,4 @@
         <image name="pendingRequests" width="42" height="42"/>
         <image name="plusIcon" width="35" height="35"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="SUC-rq-guP"/>
-    </inferredMetricsTieBreakers>
 </document>
