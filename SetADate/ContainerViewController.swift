@@ -15,8 +15,6 @@ class ContainerViewController: UIViewController {
     var currentView: Int?
     var containerViewControllers = [AnyObject]()
     
-    var currentSegue: String?
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         

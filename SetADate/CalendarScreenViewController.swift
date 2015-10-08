@@ -27,6 +27,10 @@ class CalendarScreenViewController: UIViewController, UITabBarDelegate{
         performTabBarConfigurations()
     }
     
+    override func viewWillAppear(animated: Bool) {
+        UITabBar.appearance().selectionIndicatorImage = UIImage().makeImageWithColorAndSize(self.themeBackGroundColor, size: CGSizeMake(selectionBar.frame.width/3, selectionBar.frame.height))
+    }
+    
     func performTabBarConfigurations() {
         // Sets default text color of tab bar items
         UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName : self.themeBackGroundColor], forState: UIControlState.Normal)
