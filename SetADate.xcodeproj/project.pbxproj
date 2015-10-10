@@ -16,7 +16,7 @@
 		8B4E64F21BC2A5B800723576 /* PendingRequestsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4E64F11BC2A5B800723576 /* PendingRequestsViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		8B6539191BB762B30061BF86 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6539181BB762B30061BF86 /* AppDelegate.swift */; };
 		8B65391B1BB762B30061BF86 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B65391A1BB762B30061BF86 /* ViewController.swift */; };
-		8B65391E1BB762B30061BF86 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8B65391C1BB762B30061BF86 /* Main.storyboard */; };
+		8B65391E1BB762B30061BF86 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8B65391C1BB762B30061BF86 /* Main.storyboard */; settings = {ASSET_TAGS = (1, ); }; };
 		8B6539201BB762B30061BF86 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8B65391F1BB762B30061BF86 /* Assets.xcassets */; };
 		8B6539231BB762B30061BF86 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8B6539211BB762B30061BF86 /* LaunchScreen.storyboard */; };
 		8B65392E1BB762B30061BF86 /* SetADateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B65392D1BB762B30061BF86 /* SetADateTests.swift */; };
@@ -24,8 +24,6 @@
 		8B6539481BB794CF0061BF86 /* CalendarScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6539471BB794CF0061BF86 /* CalendarScreenViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		8B65394C1BB7C68D0061BF86 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B65394B1BB7C68D0061BF86 /* CalendarViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		8B851FE81BC5666C0054D0FB /* CreateEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B851FE71BC5666C0054D0FB /* CreateEventViewController.swift */; settings = {ASSET_TAGS = (); }; };
-		8B851FEA1BC5679F0054D0FB /* EventContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B851FE91BC5679F0054D0FB /* EventContainerViewController.swift */; settings = {ASSET_TAGS = (); }; };
-		8B851FEE1BC69F3F0054D0FB /* AddEventDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B851FED1BC69F3F0054D0FB /* AddEventDetailsViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		8B887D641BC8FDC3009FB4AC /* EventTitleLocationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B887D631BC8FDC3009FB4AC /* EventTitleLocationTableViewCell.swift */; settings = {ASSET_TAGS = (); }; };
 		8B887D661BC913C6009FB4AC /* FullDayEventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B887D651BC913C6009FB4AC /* FullDayEventCell.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
@@ -71,8 +69,6 @@
 		8B6539471BB794CF0061BF86 /* CalendarScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarScreenViewController.swift; sourceTree = "<group>"; };
 		8B65394B1BB7C68D0061BF86 /* CalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		8B851FE71BC5666C0054D0FB /* CreateEventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateEventViewController.swift; sourceTree = "<group>"; };
-		8B851FE91BC5679F0054D0FB /* EventContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventContainerViewController.swift; sourceTree = "<group>"; };
-		8B851FED1BC69F3F0054D0FB /* AddEventDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddEventDetailsViewController.swift; path = ../AddEventDetailsViewController.swift; sourceTree = "<group>"; };
 		8B887D631BC8FDC3009FB4AC /* EventTitleLocationTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventTitleLocationTableViewCell.swift; sourceTree = "<group>"; };
 		8B887D651BC913C6009FB4AC /* FullDayEventCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FullDayEventCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -138,8 +134,6 @@
 				8B0F49A61BBAC0CB005A1CC2 /* Extensions.swift */,
 				8B65391C1BB762B30061BF86 /* Main.storyboard */,
 				8B851FE71BC5666C0054D0FB /* CreateEventViewController.swift */,
-				8B851FE91BC5679F0054D0FB /* EventContainerViewController.swift */,
-				8B851FED1BC69F3F0054D0FB /* AddEventDetailsViewController.swift */,
 				8B887D631BC8FDC3009FB4AC /* EventTitleLocationTableViewCell.swift */,
 				8B887D651BC913C6009FB4AC /* FullDayEventCell.swift */,
 				8B65391F1BB762B30061BF86 /* Assets.xcassets */,
@@ -229,6 +223,9 @@
 		8B65390D1BB762B20061BF86 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				KnownAssetTags = (
+					1,
+				);
 				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = Joshua;
 				TargetAttributes = {
@@ -304,12 +301,10 @@
 				8B887D661BC913C6009FB4AC /* FullDayEventCell.swift in Sources */,
 				8B47F3721BC1204600A6BE24 /* ContainerViewController.swift in Sources */,
 				8B0F49A51BBABC93005A1CC2 /* CalendarDayButton.swift in Sources */,
-				8B851FEE1BC69F3F0054D0FB /* AddEventDetailsViewController.swift in Sources */,
 				8B47F3681BC0C3DE00A6BE24 /* CalendarScreenTableViewCell.swift in Sources */,
 				8B65391B1BB762B30061BF86 /* ViewController.swift in Sources */,
 				8B6539191BB762B30061BF86 /* AppDelegate.swift in Sources */,
 				8B6539481BB794CF0061BF86 /* CalendarScreenViewController.swift in Sources */,
-				8B851FEA1BC5679F0054D0FB /* EventContainerViewController.swift in Sources */,
 				8B887D641BC8FDC3009FB4AC /* EventTitleLocationTableViewCell.swift in Sources */,
 				8B0F49A71BBAC0CB005A1CC2 /* Extensions.swift in Sources */,
 				8B851FE81BC5666C0054D0FB /* CreateEventViewController.swift in Sources */,

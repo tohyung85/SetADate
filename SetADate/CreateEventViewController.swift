@@ -9,10 +9,19 @@
 import Foundation
 import UIKit
 
-class CreateEventViewController: UIViewController, UITabBarDelegate {
+class CreateEventViewController: UIViewController, UITabBarDelegate, UITableViewDataSource, UITableViewDelegate, FullDayEventSwitchDelegate {
     
     @IBOutlet weak var createEventSelectionBar: UITabBar!
-    var eventContainerVC : EventContainerViewController?
+    @IBOutlet weak var eventNameAndLocationTable: UITableView!
+    @IBOutlet weak var dateAndTimeTable: UITableView!
+    @IBOutlet weak var attendeesTable: UITableView!
+    @IBOutlet weak var alertsTable: UITableView!
+    @IBOutlet weak var notesTextField: UITextView!
+    @IBOutlet weak var dateAndTimeTableHeightConstraint: NSLayoutConstraint!
+    
+    
+    var switchState: Bool?
+    var eventType: TypeOfEvent?
     
     let themeBackGroundColor = UIColor(red: 59.0/255, green: 186.0/255, blue: 174.0/255, alpha: 1.0)
     let themeForeGroundColor = UIColor.whiteColor()
@@ -21,6 +30,18 @@ class CreateEventViewController: UIViewController, UITabBarDelegate {
         super.viewDidLoad()
         self.createEventSelectionBar.delegate = self
         performTabBarConfigurations()
+        self.createEventSelectionBar.selectedItem = self.createEventSelectionBar.items?.first
+        
+        self.eventType = .Event
+        self.eventNameAndLocationTable.delegate = self
+        self.eventNameAndLocationTable.dataSource = self
+        self.dateAndTimeTable.delegate = self
+        self.dateAndTimeTable.dataSource = self
+        self.attendeesTable.delegate = self
+        self.attendeesTable.dataSource = self
+        self.alertsTable.delegate = self
+        self.alertsTable.dataSource = self
+        self.switchState = false
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -50,32 +71,124 @@ class CreateEventViewController: UIViewController, UITabBarDelegate {
     }
     
     func tabBar(tabBar: UITabBar, didSelectItem item: UITabBarItem) {
-        self.eventContainerVC?.newView = self.createEventSelectionBar.items?.indexOf(item)
-        self.eventContainerVC!.changeContainerView()
+        self.eventType = self.createEventSelectionBar.items?.indexOf(item) == 0 ? .Event : .Deadline
         tabBar.selectedItem = item
+        self.dateAndTimeTable.reloadData()
+        // Have to use this to set height for table view due to constraints used in story board.
+        UIView.animateWithDuration(0.0, animations: { () -> Void in
+        self.dateAndTimeTableHeightConstraint.constant = CGFloat(self.dateAndTimeTable.numberOfRowsInSection(0)) * 40.0
+            self.view.layoutIfNeeded()
+        })
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if let segueIdentifier = segue.identifier {
-            if segueIdentifier == "eventContainerView" {
-                self.eventContainerVC = segue.destinationViewController as? EventContainerViewController
-                if let eventContainerVC = self.eventContainerVC {
-                    // note: prepareForSegue called before viewDidLoad
-                    if self.createEventSelectionBar.selectedItem == nil {
-                        self.createEventSelectionBar.selectedItem = self.createEventSelectionBar.items?.first
-                    }
-                    let itemSelected = self.createEventSelectionBar.selectedItem
-                    eventContainerVC.currentView = self.createEventSelectionBar.items?.indexOf(itemSelected!)
-                }
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        switch tableView {
+        case self.eventNameAndLocationTable:
+            return 2
+        case self.dateAndTimeTable:
+            if self.eventType == .Event {
+                return self.switchState! ? 2 : 4
+            } else {
+                return 2
             }
+        case self.attendeesTable:
+            return 1
+        case self.alertsTable:
+            return 1
+        default:
+            return 1
         }
     }
-
     
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        var cellIdentifier: String?
+        
+        switch tableView {
+        case self.eventNameAndLocationTable:
+            cellIdentifier = "eventTitleLocationCell"
+            let tableViewCell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier!, forIndexPath: indexPath) as! EventTitleLocationTableViewCell
+            tableViewCell.textField.placeholder = indexPath.row == 1 ? "Location" : "Event Name"
+            tableViewCell.textField.delegate = tableViewCell
+            return tableViewCell
+            
+        case self.dateAndTimeTable:
+            switch indexPath.row {
+            case 0:
+                if self.eventType == .Event {
+                cellIdentifier = "fullDayEventCell"
+                let tableViewCell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier!, forIndexPath: indexPath) as! FullDayEventCell
+                tableViewCell.switchDelegate = self
+                return tableViewCell
+                } else {
+                    cellIdentifier = "startDateCell"
+                    let tableViewCell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier!, forIndexPath: indexPath)
+                    let label = tableViewCell.viewWithTag(1) as! UILabel
+                    label.text = "Deadline"
+                    return tableViewCell
+                }
+            case 1:
+                if self.eventType == .Event {
+                    cellIdentifier = self.switchState! ? "repeatCell" : "startDateCell"
+                    let tableViewCell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier!, forIndexPath: indexPath)
+                    if cellIdentifier == "startDateCell" {
+                    let label = tableViewCell.viewWithTag(1) as! UILabel
+                    label.text = "Start Date"
+                    }
+                    return tableViewCell
+                } else {
+                    cellIdentifier = "repeatCell"
+                    let tableViewCell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier!, forIndexPath: indexPath)
+                    return tableViewCell
+                }
+            case 2:
+                cellIdentifier = "endDateCell"
+            case 3:
+                cellIdentifier = "repeatCell"
+            default:
+                cellIdentifier = "repeatCell"
+            }
+            let tableViewCell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier!, forIndexPath: indexPath)
+            return tableViewCell
+            
+            
+        case self.attendeesTable:
+            cellIdentifier = "attendeesCell"
+            let tableViewCell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier!, forIndexPath: indexPath)
+            return tableViewCell
+        case self.alertsTable:
+            cellIdentifier = "alertsCell"
+            let tableViewCell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier!, forIndexPath: indexPath)
+            return tableViewCell
+        default:
+            cellIdentifier = "alertsCell"
+            let tableViewCell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier!, forIndexPath: indexPath)
+            return tableViewCell
+        }
+        
+    }
+    
+    
+    
+    // Remove keyboard on touch
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        view.endEditing(true)
+        super.touchesBegan(touches, withEvent: event)
+    }
+    // Full day switch delegate method
+    func switchValueChange(sender: UISwitch, state: Bool) {
+        self.switchState = state
+        self.dateAndTimeTable.reloadData()
+        self.dateAndTimeTable.frame.size.height = CGFloat(self.dateAndTimeTable.numberOfRowsInSection(0)) * 40.0
+    }
     
     @IBAction func cancelButtonPressed(sender: UIButton) {
         print("dismissing view controller")
         self.dismissViewControllerAnimated(true, completion: nil)
     }
+}
+
+enum TypeOfEvent {
+    case Event
+    case Deadline
 }
 
