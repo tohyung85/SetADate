@@ -19,6 +19,7 @@ class CreateEventViewController: UIViewController, UITabBarDelegate, UITableView
     @IBOutlet weak var notesTextField: UITextView!
     @IBOutlet weak var dateAndTimeTableHeightConstraint: NSLayoutConstraint!
     
+    @IBOutlet weak var navigationBar: UINavigationItem!
     
     var switchState: Bool?
     var eventType: TypeOfEvent?
@@ -31,6 +32,15 @@ class CreateEventViewController: UIViewController, UITabBarDelegate, UITableView
         self.createEventSelectionBar.delegate = self
         performTabBarConfigurations()
         self.createEventSelectionBar.selectedItem = self.createEventSelectionBar.items?.first
+        
+        // To remove shadow image of navigation view controller and hence the underline of the bar
+        for parent in self.navigationController!.navigationBar.subviews {
+            for childView in parent.subviews {
+                if(childView is UIImageView) {
+                    childView.removeFromSuperview()
+                }
+            }
+        }
         
         self.eventType = .Event
         self.eventNameAndLocationTable.delegate = self
@@ -185,7 +195,7 @@ class CreateEventViewController: UIViewController, UITabBarDelegate, UITableView
         })
     }
     
-    @IBAction func cancelButtonPressed(sender: UIButton) {
+    @IBAction func cancelButtonPressed(sender: UIBarButtonItem) {
         print("dismissing view controller")
         self.dismissViewControllerAnimated(true, completion: nil)
     }
@@ -206,7 +216,7 @@ class CreateEventViewController: UIViewController, UITabBarDelegate, UITableView
                 print("something else pressed")
             }
         case self.alertsTable:
-            print("alerts pressed")
+            print("alertsTable pressed")
         case self.attendeesTable:
             print("attendees pressed")
         default:

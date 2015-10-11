@@ -10,6 +10,7 @@
 		8B0F49A21BBAABE6005A1CC2 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B0F49A11BBAABE6005A1CC2 /* CalendarView.swift */; settings = {ASSET_TAGS = (); }; };
 		8B0F49A51BBABC93005A1CC2 /* CalendarDayButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B0F49A41BBABC93005A1CC2 /* CalendarDayButton.swift */; settings = {ASSET_TAGS = (); }; };
 		8B0F49A71BBAC0CB005A1CC2 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B0F49A61BBAC0CB005A1CC2 /* Extensions.swift */; settings = {ASSET_TAGS = (); }; };
+		8B44F11E1BCA684300D8EE5F /* AlertsSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B44F11D1BCA684300D8EE5F /* AlertsSelectionViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		8B47F3681BC0C3DE00A6BE24 /* CalendarScreenTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B47F3671BC0C3DE00A6BE24 /* CalendarScreenTableViewCell.swift */; settings = {ASSET_TAGS = (); }; };
 		8B47F36A1BC0CBDC00A6BE24 /* GroupsScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B47F3691BC0CBDC00A6BE24 /* GroupsScreenViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		8B47F3721BC1204600A6BE24 /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B47F3711BC1204600A6BE24 /* ContainerViewController.swift */; settings = {ASSET_TAGS = (); }; };
@@ -49,6 +50,7 @@
 		8B0F49A11BBAABE6005A1CC2 /* CalendarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
 		8B0F49A41BBABC93005A1CC2 /* CalendarDayButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarDayButton.swift; sourceTree = "<group>"; };
 		8B0F49A61BBAC0CB005A1CC2 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		8B44F11D1BCA684300D8EE5F /* AlertsSelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertsSelectionViewController.swift; sourceTree = "<group>"; };
 		8B47F3671BC0C3DE00A6BE24 /* CalendarScreenTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarScreenTableViewCell.swift; sourceTree = "<group>"; };
 		8B47F3691BC0CBDC00A6BE24 /* GroupsScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupsScreenViewController.swift; sourceTree = "<group>"; };
 		8B47F3711BC1204600A6BE24 /* ContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerViewController.swift; sourceTree = "<group>"; };
@@ -136,6 +138,7 @@
 				8B851FE71BC5666C0054D0FB /* CreateEventViewController.swift */,
 				8B887D631BC8FDC3009FB4AC /* EventTitleLocationTableViewCell.swift */,
 				8B887D651BC913C6009FB4AC /* FullDayEventCell.swift */,
+				8B44F11D1BCA684300D8EE5F /* AlertsSelectionViewController.swift */,
 				8B65391F1BB762B30061BF86 /* Assets.xcassets */,
 				8B6539211BB762B30061BF86 /* LaunchScreen.storyboard */,
 				8B6539241BB762B30061BF86 /* Info.plist */,
@@ -299,6 +302,7 @@
 				8B0F49A21BBAABE6005A1CC2 /* CalendarView.swift in Sources */,
 				8B4E64F21BC2A5B800723576 /* PendingRequestsViewController.swift in Sources */,
 				8B887D661BC913C6009FB4AC /* FullDayEventCell.swift in Sources */,
+				8B44F11E1BCA684300D8EE5F /* AlertsSelectionViewController.swift in Sources */,
 				8B47F3721BC1204600A6BE24 /* ContainerViewController.swift in Sources */,
 				8B0F49A51BBABC93005A1CC2 /* CalendarDayButton.swift in Sources */,
 				8B47F3681BC0C3DE00A6BE24 /* CalendarScreenTableViewCell.swift in Sources */,
