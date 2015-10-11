@@ -178,12 +178,40 @@ class CreateEventViewController: UIViewController, UITabBarDelegate, UITableView
     func switchValueChange(sender: UISwitch, state: Bool) {
         self.switchState = state
         self.dateAndTimeTable.reloadData()
-        self.dateAndTimeTable.frame.size.height = CGFloat(self.dateAndTimeTable.numberOfRowsInSection(0)) * 40.0
+        // Have to use this to set height for table view due to constraints used in story board.
+        UIView.animateWithDuration(0.0, animations: { () -> Void in
+            self.dateAndTimeTableHeightConstraint.constant = CGFloat(self.dateAndTimeTable.numberOfRowsInSection(0)) * 40.0
+            self.view.layoutIfNeeded()
+        })
     }
     
     @IBAction func cancelButtonPressed(sender: UIButton) {
         print("dismissing view controller")
         self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        switch tableView {
+        case self.dateAndTimeTable:
+            var repeatRow: Int?
+            if self.eventType == .Deadline || self.switchState == true {
+                repeatRow = 1
+            } else {
+                repeatRow = 3
+            }
+            switch indexPath.row {
+            case repeatRow!:
+                print("repeat button pressed")
+            default:
+                print("something else pressed")
+            }
+        case self.alertsTable:
+            print("alerts pressed")
+        case self.attendeesTable:
+            print("attendees pressed")
+        default:
+            print("nothing")
+        }
     }
 }
 
