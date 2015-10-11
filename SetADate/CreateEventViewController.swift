@@ -196,7 +196,6 @@ class CreateEventViewController: UIViewController, UITabBarDelegate, UITableView
     }
     
     @IBAction func cancelButtonPressed(sender: UIBarButtonItem) {
-        print("dismissing view controller")
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
