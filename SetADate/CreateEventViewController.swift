@@ -57,13 +57,14 @@ class CreateEventViewController: UIViewController, UITabBarDelegate, UITableView
         self.switchState = false
         
         self.alerts = ["None" : 0]
-        self.repeats = ["None" : 0]
+        self.repeats = ["Never" : 0]
     }
     
     override func viewWillAppear(animated: Bool) {
         UITabBar.appearance().selectionIndicatorImage = UIImage().makeImageWithColorAndSize(self.themeBackGroundColor, size: CGSizeMake(createEventSelectionBar.frame.width/2, createEventSelectionBar.frame.height))
         
         self.alertsTable.reloadData()
+        self.dateAndTimeTable.reloadData()
     }
     
     
@@ -162,9 +163,9 @@ class CreateEventViewController: UIViewController, UITabBarDelegate, UITableView
             case 2:
                 cellIdentifier = "endDateCell"
             case 3:
-                cellIdentifier = "repeatCell"
+                return setupRepeatsCell(tableView, indexPath: indexPath)
             default:
-                cellIdentifier = "repeatCell"
+                return setupRepeatsCell(tableView, indexPath: indexPath)
             }
             let tableViewCell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier!, forIndexPath: indexPath)
             return tableViewCell
@@ -241,6 +242,12 @@ class CreateEventViewController: UIViewController, UITabBarDelegate, UITableView
             let alertsVC = segue.destinationViewController as! AlertsSelectionViewController
             alertsVC.masterVC = self
             alertsVC.selectedAlert = self.alerts
+        }
+        
+        if segue.identifier == "repeatsSelectionSegue" {
+            let repeatsVC = segue.destinationViewController as! RepeatsSelectionViewController
+            repeatsVC.masterVC = self
+            repeatsVC.selectedRepeat = self.repeats
         }
     }
     
