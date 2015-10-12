@@ -409,7 +409,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="repeatCell" rowHeight="40" id="WPO-Fi-Pyd">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="repeatCell" rowHeight="40" id="WPO-Fi-Pyd" customClass="AlertsAndRepeatsCell" customModule="SetADate" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="148" width="414" height="40"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="WPO-Fi-Pyd" id="7QG-xI-Y9m">
@@ -422,8 +422,18 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="None" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rai-cY-vWm">
+                                                    <rect key="frame" x="240" y="9" width="141" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.60000002379999995" green="0.60000002379999995" blue="0.60000002379999995" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="alertsStatus" destination="Rai-cY-vWm" id="ehA-Kk-vXd"/>
+                                            <segue destination="JNk-xK-SEE" kind="show" id="bvh-Vr-AQa"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -434,7 +444,7 @@
                                     <constraint firstAttribute="height" constant="39" id="mwz-Sg-NGM"/>
                                 </constraints>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="alertsCell" rowHeight="40" id="thC-XI-8W8" customClass="AlertsCell" customModule="SetADate" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="alertsCell" rowHeight="40" id="thC-XI-8W8" customClass="AlertsAndRepeatsCell" customModule="SetADate" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="40"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="thC-XI-8W8" id="NLH-mp-pbL">
@@ -456,7 +466,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="alertsStatus" destination="RN1-jL-cZl" id="N1Z-Yj-R1s"/>
+                                            <outlet property="alertsStatus" destination="RN1-jL-cZl" id="Euy-Ql-jAJ"/>
                                             <segue destination="a6O-Wf-fht" kind="show" identifier="alertsSelectionSegue" id="TB2-d0-U7k"/>
                                         </connections>
                                     </tableViewCell>
@@ -628,7 +638,26 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8kU-eR-dWy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2086" y="477"/>
+            <point key="canvasLocation" x="2133" y="105"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="nRq-0t-EUp">
+            <objects>
+                <viewController id="JNk-xK-SEE" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="dDF-9b-sxx"/>
+                        <viewControllerLayoutGuide type="bottom" id="CtC-qb-Bbl"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="lQW-LQ-wvi">
+                        <rect key="frame" x="0.0" y="64" width="414" height="672"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aNJ-Cc-hat" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2133" y="915"/>
         </scene>
         <!--Groups Screen View Controller-->
         <scene sceneID="8ir-6o-f0m">

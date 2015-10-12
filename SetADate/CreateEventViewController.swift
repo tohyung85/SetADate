@@ -25,6 +25,7 @@ class CreateEventViewController: UIViewController, UITabBarDelegate, UITableView
     var eventType: TypeOfEvent?
     
     var alerts : [String : Int]?
+    var repeats : [String : Int]?
     
     let themeBackGroundColor = UIColor(red: 59.0/255, green: 186.0/255, blue: 174.0/255, alpha: 1.0)
     let themeForeGroundColor = UIColor.whiteColor()
@@ -56,6 +57,7 @@ class CreateEventViewController: UIViewController, UITabBarDelegate, UITableView
         self.switchState = false
         
         self.alerts = ["None" : 0]
+        self.repeats = ["None" : 0]
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -143,18 +145,19 @@ class CreateEventViewController: UIViewController, UITabBarDelegate, UITableView
                     return tableViewCell
                 }
             case 1:
+                cellIdentifier = self.switchState == true ? "repeatCell" : "startDateCell"
                 if self.eventType == .Event {
-                    cellIdentifier = self.switchState! ? "repeatCell" : "startDateCell"
-                    let tableViewCell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier!, forIndexPath: indexPath)
                     if cellIdentifier == "startDateCell" {
+                    let tableViewCell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier!, forIndexPath: indexPath)
                     let label = tableViewCell.viewWithTag(1) as! UILabel
                     label.text = "Start Date"
+                    return tableViewCell
+                    } else {
+                        return setupRepeatsCell(tableView, indexPath: indexPath)
                     }
-                    return tableViewCell
+
                 } else {
-                    cellIdentifier = "repeatCell"
-                    let tableViewCell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier!, forIndexPath: indexPath)
-                    return tableViewCell
+                    return setupRepeatsCell(tableView, indexPath: indexPath)
                 }
             case 2:
                 cellIdentifier = "endDateCell"
@@ -173,7 +176,7 @@ class CreateEventViewController: UIViewController, UITabBarDelegate, UITableView
             return tableViewCell
         case self.alertsTable:
             cellIdentifier = "alertsCell"
-            let tableViewCell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier!, forIndexPath: indexPath) as! AlertsCell
+            let tableViewCell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier!, forIndexPath: indexPath) as! AlertsAndRepeatsCell
             for (key, _) in self.alerts! {
                 tableViewCell.alertsStatus.text = key
             }
@@ -239,6 +242,15 @@ class CreateEventViewController: UIViewController, UITabBarDelegate, UITableView
             alertsVC.masterVC = self
             alertsVC.selectedAlert = self.alerts
         }
+    }
+    
+    func setupRepeatsCell (tableView: UITableView, indexPath: NSIndexPath) -> AlertsAndRepeatsCell{
+        let cellIdentifier = "repeatCell"
+        let tableViewCell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! AlertsAndRepeatsCell
+        for (key, _) in self.repeats! {
+            tableViewCell.alertsStatus.text = key
+        }
+        return tableViewCell
     }
     
     

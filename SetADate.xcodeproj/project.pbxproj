@@ -30,6 +30,7 @@
 		8B8D1D971BCBDBC500EF3D41 /* AlertsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8D1D961BCBDBC500EF3D41 /* AlertsCell.swift */; settings = {ASSET_TAGS = (); }; };
 		8B8D1D991BCBDCAF00EF3D41 /* EventObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8D1D981BCBDCAF00EF3D41 /* EventObject.swift */; settings = {ASSET_TAGS = (); }; };
 		8B8D1D9B1BCBE09100EF3D41 /* AlertsSelectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8D1D9A1BCBE09100EF3D41 /* AlertsSelectionCell.swift */; settings = {ASSET_TAGS = (); }; };
+		8B8D1D9D1BCBF07F00EF3D41 /* AlertsAndRepeatsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8D1D9C1BCBF07F00EF3D41 /* AlertsAndRepeatsCell.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +80,7 @@
 		8B8D1D961BCBDBC500EF3D41 /* AlertsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertsCell.swift; sourceTree = "<group>"; };
 		8B8D1D981BCBDCAF00EF3D41 /* EventObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventObject.swift; sourceTree = "<group>"; };
 		8B8D1D9A1BCBE09100EF3D41 /* AlertsSelectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertsSelectionCell.swift; sourceTree = "<group>"; };
+		8B8D1D9C1BCBF07F00EF3D41 /* AlertsAndRepeatsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertsAndRepeatsCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,9 +147,10 @@
 				8B887D631BC8FDC3009FB4AC /* EventTitleLocationTableViewCell.swift */,
 				8B887D651BC913C6009FB4AC /* FullDayEventCell.swift */,
 				8B44F11D1BCA684300D8EE5F /* AlertsSelectionViewController.swift */,
+				8B8D1D9C1BCBF07F00EF3D41 /* AlertsAndRepeatsCell.swift */,
 				8B8D1D9A1BCBE09100EF3D41 /* AlertsSelectionCell.swift */,
-				8B8D1D961BCBDBC500EF3D41 /* AlertsCell.swift */,
 				8B8D1D981BCBDCAF00EF3D41 /* EventObject.swift */,
+				8B8D1D961BCBDBC500EF3D41 /* AlertsCell.swift */,
 				8B65391F1BB762B30061BF86 /* Assets.xcassets */,
 				8B6539211BB762B30061BF86 /* LaunchScreen.storyboard */,
 				8B6539241BB762B30061BF86 /* Info.plist */,
@@ -321,6 +324,7 @@
 				8B6539191BB762B30061BF86 /* AppDelegate.swift in Sources */,
 				8B6539481BB794CF0061BF86 /* CalendarScreenViewController.swift in Sources */,
 				8B8D1D991BCBDCAF00EF3D41 /* EventObject.swift in Sources */,
+				8B8D1D9D1BCBF07F00EF3D41 /* AlertsAndRepeatsCell.swift in Sources */,
 				8B887D641BC8FDC3009FB4AC /* EventTitleLocationTableViewCell.swift in Sources */,
 				8B0F49A71BBAC0CB005A1CC2 /* Extensions.swift in Sources */,
 				8B851FE81BC5666C0054D0FB /* CreateEventViewController.swift in Sources */,
