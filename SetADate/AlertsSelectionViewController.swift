@@ -17,8 +17,11 @@ class AlertsSelectionViewController: UIViewController, UITableViewDelegate, UITa
     @IBOutlet weak var alertsTableHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var noAlertsTableHeightConstraint: NSLayoutConstraint!
     
+    var masterVC : CreateEventViewController?
     
-    let possibleAlertTimes = [["At time of event" : 0], ["5 minutes before" : 5], ["15 minutes before" : 15], ["30 minutes before" : 30], ["1 hour before" : 60], ["2 hours before" : 120], ["1 day before" : 60 * 24], ["2 days before" : 2 * 24 * 60], ["1 week before" : 7 * 24 * 60]]
+    var selectedAlert : [String : Int]?
+    
+    let possibleAlertTimes = [["None" : 0], ["At time of event" : 0], ["5 minutes before" : 5], ["15 minutes before" : 15], ["30 minutes before" : 30], ["1 hour before" : 60], ["2 hours before" : 120], ["1 day before" : 60 * 24], ["2 days before" : 2 * 24 * 60], ["1 week before" : 7 * 24 * 60]]
     
     
     override func viewDidLoad() {
@@ -35,20 +38,29 @@ class AlertsSelectionViewController: UIViewController, UITableViewDelegate, UITa
             self.noAlertsTableHeightConstraint.constant = CGFloat(self.noAlertsTable.numberOfRowsInSection(0)) * 44.0 - 1.0
             self.view.layoutIfNeeded()
         })
+    }
+    
+    override func viewWillAppear(animated: Bool) {
         
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cellIndentifier = "cell"
+        let cellIndentifier = "alertsSelectionCell"
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIndentifier)
         
         if tableView == self.noAlertsTable {
-            cell?.textLabel?.text = "None"
+            if let unwrappedCell = cell {
+                unwrappedCell.textLabel?.text = "None"
+                checkAndInsertCheckMark(unwrappedCell)
+            }
         } else {
-            let alertTime = possibleAlertTimes[indexPath.row]
-            for (key, value) in alertTime {
-                cell?.textLabel?.text = key
-                print("need to store the value and send it back to Creat Event VC %d", value)
+            let alertTime = possibleAlertTimes[indexPath.row + 1]
+            for (key, _) in alertTime {
+                if let unwrappedCell = cell {
+                    unwrappedCell.textLabel?.text = key
+                    checkAndInsertCheckMark(unwrappedCell)
+
+                }
             }
         }
         return cell!
@@ -67,9 +79,26 @@ class AlertsSelectionViewController: UIViewController, UITableViewDelegate, UITa
         return numberOfRows
     }
     
-}
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
 
-
-enum possibleAlertTimes {
+        let cellSelected  = tableView.cellForRowAtIndexPath(indexPath)
+        for types in self.possibleAlertTimes {
+            for (key, value) in types {
+                if cellSelected?.textLabel?.text == key {
+                    self.selectedAlert = [key : value]
+                    self.masterVC?.alerts = self.selectedAlert
+                    self.navigationController?.popViewControllerAnimated(true)
+                }
+            }
+        }
+    }
+    
+    func checkAndInsertCheckMark (cell: UITableViewCell) {
+        for (key, _) in self.selectedAlert! {
+            if key == cell.textLabel?.text {
+                cell.accessoryType = .Checkmark
+            }
+        }
+    }
     
 }

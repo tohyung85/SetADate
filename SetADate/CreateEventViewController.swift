@@ -24,6 +24,8 @@ class CreateEventViewController: UIViewController, UITabBarDelegate, UITableView
     var switchState: Bool?
     var eventType: TypeOfEvent?
     
+    var alerts : [String : Int]?
+    
     let themeBackGroundColor = UIColor(red: 59.0/255, green: 186.0/255, blue: 174.0/255, alpha: 1.0)
     let themeForeGroundColor = UIColor.whiteColor()
     
@@ -52,10 +54,14 @@ class CreateEventViewController: UIViewController, UITabBarDelegate, UITableView
         self.alertsTable.delegate = self
         self.alertsTable.dataSource = self
         self.switchState = false
+        
+        self.alerts = ["None" : 0]
     }
     
     override func viewWillAppear(animated: Bool) {
         UITabBar.appearance().selectionIndicatorImage = UIImage().makeImageWithColorAndSize(self.themeBackGroundColor, size: CGSizeMake(createEventSelectionBar.frame.width/2, createEventSelectionBar.frame.height))
+        
+        self.alertsTable.reloadData()
     }
     
     
@@ -167,7 +173,10 @@ class CreateEventViewController: UIViewController, UITabBarDelegate, UITableView
             return tableViewCell
         case self.alertsTable:
             cellIdentifier = "alertsCell"
-            let tableViewCell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier!, forIndexPath: indexPath)
+            let tableViewCell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier!, forIndexPath: indexPath) as! AlertsCell
+            for (key, _) in self.alerts! {
+                tableViewCell.alertsStatus.text = key
+            }
             return tableViewCell
         default:
             cellIdentifier = "alertsCell"
@@ -222,7 +231,21 @@ class CreateEventViewController: UIViewController, UITabBarDelegate, UITableView
             print("nothing")
         }
     }
+    
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "alertsSelectionSegue" {
+            let alertsVC = segue.destinationViewController as! AlertsSelectionViewController
+            alertsVC.masterVC = self
+            alertsVC.selectedAlert = self.alerts
+        }
+    }
+    
+    
 }
+
+
+
 
 enum TypeOfEvent {
     case Event
