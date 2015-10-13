@@ -213,26 +213,32 @@ class CreateEventViewController: UIViewController, UITabBarDelegate, UITableView
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        switch tableView {
-        case self.dateAndTimeTable:
-            var repeatRow: Int?
-            if self.eventType == .Deadline || self.switchState == true {
-                repeatRow = 1
-            } else {
-                repeatRow = 3
-            }
-            switch indexPath.row {
-            case repeatRow!:
-                print("repeat button pressed")
-            default:
-                print("something else pressed")
-            }
-        case self.alertsTable:
-            print("alertsTable pressed")
-        case self.attendeesTable:
-            print("attendees pressed")
-        default:
-            print("nothing")
+        let cell = tableView.cellForRowAtIndexPath(indexPath)
+        let cellIdentifier = cell?.reuseIdentifier
+        print("cell selected: %@", cellIdentifier)
+        
+        if cellIdentifier == "fullDayEventCell" {
+            print("fullDayEventCell selected")
+        }
+        
+        if cellIdentifier == "startDateCell" {
+            print("startDateCell selected")
+        }
+        
+        if cellIdentifier == "endDateCell" {
+            print("endDateCell selected")
+        }
+        
+        if cellIdentifier == "repeatCell" {
+            print("repeat cell selected")
+        }
+        
+        if cellIdentifier == "attendeesCell" {
+            print("attendees cell selected")
+        }
+        
+        if cellIdentifier == "alertsCell" {
+            print("alertsCell selected")
         }
     }
     
