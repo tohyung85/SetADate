@@ -345,7 +345,7 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="40" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="r5q-Q0-3DG">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="100" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="r5q-Q0-3DG">
                                 <rect key="frame" x="0.0" y="199" width="414" height="159"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -434,6 +434,28 @@
                                             <outlet property="alertsStatus" destination="Rai-cY-vWm" id="ehA-Kk-vXd"/>
                                             <segue destination="JNk-xK-SEE" kind="show" identifier="repeatsSelectionSegue" id="bvh-Vr-AQa"/>
                                         </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="datePickerCell" rowHeight="200" id="h0c-4g-QUv">
+                                        <rect key="frame" x="0.0" y="188" width="414" height="200"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="h0c-4g-QUv" id="RUY-pi-1KL">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="199"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="15" translatesAutoresizingMaskIntoConstraints="NO" id="yBG-R1-a9D">
+                                                    <rect key="frame" x="0.0" y="8" width="414" height="182"/>
+                                                    <date key="date" timeIntervalSinceReferenceDate="466519892.29525501">
+                                                        <!--2015-10-14 12:51:32 +0000-->
+                                                    </date>
+                                                </datePicker>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="yBG-R1-a9D" firstAttribute="top" secondItem="RUY-pi-1KL" secondAttribute="top" constant="8" id="TkW-Uq-PFT"/>
+                                                <constraint firstAttribute="trailing" secondItem="yBG-R1-a9D" secondAttribute="trailing" id="XUh-8z-O6o"/>
+                                                <constraint firstItem="yBG-R1-a9D" firstAttribute="leading" secondItem="RUY-pi-1KL" secondAttribute="leading" id="cTn-gH-eHt"/>
+                                                <constraint firstAttribute="bottom" secondItem="yBG-R1-a9D" secondAttribute="bottom" constant="9" id="hXi-kk-VsK"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>

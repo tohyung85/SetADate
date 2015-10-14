@@ -27,6 +27,9 @@ class CreateEventViewController: UIViewController, UITabBarDelegate, UITableView
     var alerts : [String : Int]?
     var repeats : [String : Int]?
     
+    var showStartDatePicker : Bool?
+    var showEndDatePicker : Bool?
+    
     let themeBackGroundColor = UIColor(red: 59.0/255, green: 186.0/255, blue: 174.0/255, alpha: 1.0)
     let themeForeGroundColor = UIColor.whiteColor()
     
@@ -54,6 +57,8 @@ class CreateEventViewController: UIViewController, UITabBarDelegate, UITableView
         self.attendeesTable.dataSource = self
         self.alertsTable.delegate = self
         self.alertsTable.dataSource = self
+        
+        self.dateAndTimeTable.rowHeight = UITableViewAutomaticDimension
         self.switchState = false
         
         self.alerts = ["None" : 0]
@@ -64,7 +69,18 @@ class CreateEventViewController: UIViewController, UITabBarDelegate, UITableView
         UITabBar.appearance().selectionIndicatorImage = UIImage().makeImageWithColorAndSize(self.themeBackGroundColor, size: CGSizeMake(createEventSelectionBar.frame.width/2, createEventSelectionBar.frame.height))
         
         self.alertsTable.reloadData()
+        self.showStartDatePicker = false
+        self.showEndDatePicker = false
         self.dateAndTimeTable.reloadData()
+
+        UIView.animateWithDuration(0.0, animations: { () -> Void in
+            if self.showEndDatePicker == true || self.showStartDatePicker == true {
+                self.dateAndTimeTableHeightConstraint.constant = CGFloat(self.dateAndTimeTable.numberOfRowsInSection(0) - 1) * 40.0 + 200.0
+            } else {
+                self.dateAndTimeTableHeightConstraint.constant = CGFloat(self.dateAndTimeTable.numberOfRowsInSection(0)) * 40.0
+            }
+            self.view.layoutIfNeeded()
+        })
     }
     
     
@@ -101,14 +117,15 @@ class CreateEventViewController: UIViewController, UITabBarDelegate, UITableView
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        let datePickerDisplayRow = self.showEndDatePicker == true || self.showStartDatePicker == true ? 1 : 0
         switch tableView {
         case self.eventNameAndLocationTable:
             return 2
         case self.dateAndTimeTable:
             if self.eventType == .Event {
-                return self.switchState! ? 2 : 4
+                return self.switchState! ? 2 + datePickerDisplayRow : 4 + datePickerDisplayRow
             } else {
-                return 2
+                return 2 + datePickerDisplayRow
             }
         case self.attendeesTable:
             return 1
@@ -157,13 +174,32 @@ class CreateEventViewController: UIViewController, UITabBarDelegate, UITableView
                         return setupRepeatsCell(tableView, indexPath: indexPath)
                     }
 
+                } else if self.showStartDatePicker == true {
+                    cellIdentifier = "datePickerCell"
+                    } else {
+                    return setupRepeatsCell(tableView, indexPath: indexPath)
+                    }
+            case 2:
+                if self.eventType == .Event {
+                    if self.showStartDatePicker == true {
+                        cellIdentifier = "datePickerCell"
+                    } else {
+                        cellIdentifier = "endDateCell"
+                    }
+                } else {
+                    if self.showStartDatePicker == true {
+                        return setupRepeatsCell(tableView, indexPath: indexPath)
+                    }
+                }
+
+            case 3:
+                if self.showStartDatePicker == true {
+                    cellIdentifier = "endDateCell"
+                } else if self.showEndDatePicker == true {
+                    cellIdentifier = "datePickerCell"
                 } else {
                     return setupRepeatsCell(tableView, indexPath: indexPath)
                 }
-            case 2:
-                cellIdentifier = "endDateCell"
-            case 3:
-                return setupRepeatsCell(tableView, indexPath: indexPath)
             default:
                 return setupRepeatsCell(tableView, indexPath: indexPath)
             }
@@ -190,6 +226,31 @@ class CreateEventViewController: UIViewController, UITabBarDelegate, UITableView
         
     }
     
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        switch self.eventType! {
+        case .Event:
+            if self.showStartDatePicker == true {
+                if self.switchState == false {
+                    if indexPath.row == 2 {
+                        return 200.0
+                    }
+                }
+            }
+            if self.showEndDatePicker == true {
+                if indexPath.row == 3 {
+                    return 200.0
+                }
+            }
+        case .Deadline:
+            if self.showStartDatePicker == true {
+                if indexPath.row == 1 {
+                    return 200.0
+                }
+            }
+        }
+        return 40.0
+    }
+    
     
     
     // Remove keyboard on touch
@@ -200,6 +261,10 @@ class CreateEventViewController: UIViewController, UITabBarDelegate, UITableView
     // Full day switch delegate method
     func switchValueChange(sender: UISwitch, state: Bool) {
         self.switchState = state
+        if self.switchState == true {
+            self.showStartDatePicker = false
+            self.showEndDatePicker = false
+        }
         self.dateAndTimeTable.reloadData()
         // Have to use this to set height for table view due to constraints used in story board.
         UIView.animateWithDuration(0.0, animations: { () -> Void in
@@ -215,30 +280,47 @@ class CreateEventViewController: UIViewController, UITabBarDelegate, UITableView
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let cell = tableView.cellForRowAtIndexPath(indexPath)
         let cellIdentifier = cell?.reuseIdentifier
-        print("cell selected: %@", cellIdentifier)
         
         if cellIdentifier == "fullDayEventCell" {
             print("fullDayEventCell selected")
         }
         
         if cellIdentifier == "startDateCell" {
-            print("startDateCell selected")
+            self.showStartDatePicker = self.showStartDatePicker == true ? false : true
+            self.showEndDatePicker = false
+            tableView.reloadData()
+            UIView.animateWithDuration(0.0, animations: { () -> Void in
+                if self.showEndDatePicker == true || self.showStartDatePicker == true {
+                    self.dateAndTimeTableHeightConstraint.constant = CGFloat(self.dateAndTimeTable.numberOfRowsInSection(0) - 1) * 40.0 + 200.0
+                } else {
+                    self.dateAndTimeTableHeightConstraint.constant = CGFloat(self.dateAndTimeTable.numberOfRowsInSection(0)) * 40.0
+                }
+                self.view.layoutIfNeeded()
+            })
+
         }
         
         if cellIdentifier == "endDateCell" {
-            print("endDateCell selected")
+            self.showEndDatePicker = self.showEndDatePicker == true ? false : true
+            self.showStartDatePicker = false
+            tableView.reloadData()
+            UIView.animateWithDuration(0.0, animations: { () -> Void in
+                if self.showEndDatePicker == true || self.showStartDatePicker == true {
+                    self.dateAndTimeTableHeightConstraint.constant = CGFloat(self.dateAndTimeTable.numberOfRowsInSection(0) - 1) * 40.0 + 200.0
+                } else {
+                    self.dateAndTimeTableHeightConstraint.constant = CGFloat(self.dateAndTimeTable.numberOfRowsInSection(0)) * 40.0
+                }
+                self.view.layoutIfNeeded()
+            })
         }
         
         if cellIdentifier == "repeatCell" {
-            print("repeat cell selected")
         }
         
         if cellIdentifier == "attendeesCell" {
-            print("attendees cell selected")
         }
         
         if cellIdentifier == "alertsCell" {
-            print("alertsCell selected")
         }
     }
     
