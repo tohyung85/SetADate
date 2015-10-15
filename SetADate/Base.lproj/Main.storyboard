@@ -377,7 +377,7 @@
                                             <outlet property="fullDayEventSwitch" destination="x5T-x3-ohj" id="BRX-7Z-apR"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="startDateCell" rowHeight="40" id="DvM-0b-35x">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="startDateCell" rowHeight="40" id="DvM-0b-35x" customClass="StartEndDateCell" customModule="SetADate" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="68" width="414" height="40"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="DvM-0b-35x" id="RtP-f7-Lev">
@@ -390,10 +390,19 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fpE-Dp-c73">
+                                                    <rect key="frame" x="187" y="9" width="203" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="dateTimeLabel" destination="fpE-Dp-c73" id="Ana-wR-K2f"/>
+                                        </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="endDateCell" rowHeight="40" id="lL3-kN-r74">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="endDateCell" rowHeight="40" id="lL3-kN-r74" customClass="StartEndDateCell" customModule="SetADate" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="108" width="414" height="40"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="lL3-kN-r74" id="bSS-Ci-VZa">
@@ -406,8 +415,17 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T9e-3S-JsS">
+                                                    <rect key="frame" x="187" y="9" width="203" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="dateTimeLabel" destination="T9e-3S-JsS" id="xn3-XF-dYa"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="repeatCell" rowHeight="40" id="WPO-Fi-Pyd" customClass="AlertsAndRepeatsCell" customModule="SetADate" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="148" width="414" height="40"/>
@@ -435,14 +453,14 @@
                                             <segue destination="JNk-xK-SEE" kind="show" identifier="repeatsSelectionSegue" id="bvh-Vr-AQa"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="datePickerCell" rowHeight="200" id="h0c-4g-QUv">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="datePickerCell" rowHeight="200" id="h0c-4g-QUv" customClass="DatePickerCell" customModule="SetADate" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="188" width="414" height="200"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="h0c-4g-QUv" id="RUY-pi-1KL">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="199"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="15" translatesAutoresizingMaskIntoConstraints="NO" id="yBG-R1-a9D">
+                                                <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="15" translatesAutoresizingMaskIntoConstraints="NO" id="yBG-R1-a9D" customClass="StartEndDatePicker" customModule="SetADate" customModuleProvider="target">
                                                     <rect key="frame" x="0.0" y="8" width="414" height="182"/>
                                                     <date key="date" timeIntervalSinceReferenceDate="466519892.29525501">
                                                         <!--2015-10-14 12:51:32 +0000-->
@@ -456,6 +474,9 @@
                                                 <constraint firstAttribute="bottom" secondItem="yBG-R1-a9D" secondAttribute="bottom" constant="9" id="hXi-kk-VsK"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="datePicker" destination="yBG-R1-a9D" id="Xpk-PH-JR4"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>

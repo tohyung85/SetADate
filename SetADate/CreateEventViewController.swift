@@ -26,12 +26,21 @@ class CreateEventViewController: UIViewController, UITabBarDelegate, UITableView
     
     var alerts : [String : Int]?
     var repeats : [String : Int]?
+    var startDate : NSDate?
+    var endDate : NSDate?
     
     var showStartDatePicker : Bool?
     var showEndDatePicker : Bool?
     
     let themeBackGroundColor = UIColor(red: 59.0/255, green: 186.0/255, blue: 174.0/255, alpha: 1.0)
     let themeForeGroundColor = UIColor.whiteColor()
+    
+    
+    
+    
+    ///////////////////////////////
+    // VIEW CONTROLLER LIFECYCLE FUNCTIONS
+    ///////////////////////////////
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,6 +70,8 @@ class CreateEventViewController: UIViewController, UITabBarDelegate, UITableView
         self.dateAndTimeTable.rowHeight = UITableViewAutomaticDimension
         self.switchState = false
         
+        self.startDate = NSDate()
+        self.endDate = self.startDate?.dateByAddingTimeInterval(60.0 * 60.0)
         self.alerts = ["None" : 0]
         self.repeats = ["Never" : 0]
     }
@@ -82,6 +93,14 @@ class CreateEventViewController: UIViewController, UITabBarDelegate, UITableView
             self.view.layoutIfNeeded()
         })
     }
+    
+    @IBAction func cancelButtonPressed(sender: UIBarButtonItem) {
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    ///////////////////////////////
+    // TAB BAR FUNCTIONS
+    ///////////////////////////////
     
     
     func performTabBarConfigurations() {
@@ -108,6 +127,8 @@ class CreateEventViewController: UIViewController, UITabBarDelegate, UITableView
     func tabBar(tabBar: UITabBar, didSelectItem item: UITabBarItem) {
         self.eventType = self.createEventSelectionBar.items?.indexOf(item) == 0 ? .Event : .Deadline
         tabBar.selectedItem = item
+        self.showStartDatePicker = false
+        self.showEndDatePicker = false
         self.dateAndTimeTable.reloadData()
         // Have to use this to set height for table view due to constraints used in story board.
         UIView.animateWithDuration(0.0, animations: { () -> Void in
@@ -115,6 +136,11 @@ class CreateEventViewController: UIViewController, UITabBarDelegate, UITableView
             self.view.layoutIfNeeded()
         })
     }
+    
+
+    ///////////////////////////////
+    // TABLE VIEW DELEGATE & DATASOURCE FUNCTIONS
+    ///////////////////////////////
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let datePickerDisplayRow = self.showEndDatePicker == true || self.showStartDatePicker == true ? 1 : 0
@@ -141,50 +167,35 @@ class CreateEventViewController: UIViewController, UITabBarDelegate, UITableView
         
         switch tableView {
         case self.eventNameAndLocationTable:
-            cellIdentifier = "eventTitleLocationCell"
-            let tableViewCell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier!, forIndexPath: indexPath) as! EventTitleLocationTableViewCell
-            tableViewCell.textField.placeholder = indexPath.row == 1 ? "Location" : "Event Name"
-            tableViewCell.textField.delegate = tableViewCell
-            return tableViewCell
+            return setUpEventNameAndLocationCells(tableView, indexPath: indexPath)
             
         case self.dateAndTimeTable:
             switch indexPath.row {
             case 0:
                 if self.eventType == .Event {
-                cellIdentifier = "fullDayEventCell"
-                let tableViewCell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier!, forIndexPath: indexPath) as! FullDayEventCell
-                tableViewCell.switchDelegate = self
-                return tableViewCell
+                return setupFullDayEventCell(tableView, indexPath: indexPath)
                 } else {
-                    cellIdentifier = "startDateCell"
-                    let tableViewCell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier!, forIndexPath: indexPath)
-                    let label = tableViewCell.viewWithTag(1) as! UILabel
-                    label.text = "Deadline"
-                    return tableViewCell
+                    return setupStartDateCell(tableView, indexPath: indexPath, startDate: self.startDate!)
                 }
             case 1:
-                cellIdentifier = self.switchState == true ? "repeatCell" : "startDateCell"
                 if self.eventType == .Event {
-                    if cellIdentifier == "startDateCell" {
-                    let tableViewCell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier!, forIndexPath: indexPath)
-                    let label = tableViewCell.viewWithTag(1) as! UILabel
-                    label.text = "Start Date"
-                    return tableViewCell
+                    if self.switchState != true {
+                        return setupStartDateCell(tableView, indexPath: indexPath, startDate: self.startDate!)
                     } else {
                         return setupRepeatsCell(tableView, indexPath: indexPath)
                     }
 
                 } else if self.showStartDatePicker == true {
-                    cellIdentifier = "datePickerCell"
+                    return setupDatePickerCell(tableView, indexPath: indexPath, forDateCell: "startDateCell")
                     } else {
                     return setupRepeatsCell(tableView, indexPath: indexPath)
                     }
             case 2:
                 if self.eventType == .Event {
                     if self.showStartDatePicker == true {
-                        cellIdentifier = "datePickerCell"
+                    return setupDatePickerCell(tableView, indexPath: indexPath, forDateCell: "startDateCell")
                     } else {
-                        cellIdentifier = "endDateCell"
+                        return setupEndDateCell(tableView, indexPath: indexPath, endDate: self.endDate!)
                     }
                 } else {
                     if self.showStartDatePicker == true {
@@ -194,9 +205,9 @@ class CreateEventViewController: UIViewController, UITabBarDelegate, UITableView
 
             case 3:
                 if self.showStartDatePicker == true {
-                    cellIdentifier = "endDateCell"
+                    return setupEndDateCell(tableView, indexPath: indexPath, endDate: self.endDate!)
                 } else if self.showEndDatePicker == true {
-                    cellIdentifier = "datePickerCell"
+                    return setupDatePickerCell(tableView, indexPath: indexPath, forDateCell: "endDateCell")
                 } else {
                     return setupRepeatsCell(tableView, indexPath: indexPath)
                 }
@@ -251,32 +262,6 @@ class CreateEventViewController: UIViewController, UITabBarDelegate, UITableView
         return 40.0
     }
     
-    
-    
-    // Remove keyboard on touch
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        view.endEditing(true)
-        super.touchesBegan(touches, withEvent: event)
-    }
-    // Full day switch delegate method
-    func switchValueChange(sender: UISwitch, state: Bool) {
-        self.switchState = state
-        if self.switchState == true {
-            self.showStartDatePicker = false
-            self.showEndDatePicker = false
-        }
-        self.dateAndTimeTable.reloadData()
-        // Have to use this to set height for table view due to constraints used in story board.
-        UIView.animateWithDuration(0.0, animations: { () -> Void in
-            self.dateAndTimeTableHeightConstraint.constant = CGFloat(self.dateAndTimeTable.numberOfRowsInSection(0)) * 40.0
-            self.view.layoutIfNeeded()
-        })
-    }
-    
-    @IBAction func cancelButtonPressed(sender: UIBarButtonItem) {
-        self.dismissViewControllerAnimated(true, completion: nil)
-    }
-    
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let cell = tableView.cellForRowAtIndexPath(indexPath)
         let cellIdentifier = cell?.reuseIdentifier
@@ -324,6 +309,9 @@ class CreateEventViewController: UIViewController, UITabBarDelegate, UITableView
         }
     }
     
+    ///////////////////////////////
+    // TABLE VIEW SELECTION SEGUES
+    ///////////////////////////////
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "alertsSelectionSegue" {
@@ -339,6 +327,34 @@ class CreateEventViewController: UIViewController, UITabBarDelegate, UITableView
         }
     }
     
+    
+    ///////////////////////////////
+    // TABLE VIEW CELL RELATED FUNCTIONS
+    ///////////////////////////////
+    
+    // Remove keyboard on touch
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        view.endEditing(true)
+        super.touchesBegan(touches, withEvent: event)
+    }
+    // Full day switch delegate method
+    func switchValueChange(sender: UISwitch, state: Bool) {
+        self.switchState = state
+        if self.switchState == true {
+            self.showStartDatePicker = false
+            self.showEndDatePicker = false
+        }
+        self.dateAndTimeTable.reloadData()
+        // Have to use this to set height for table view due to constraints used in story board.
+        UIView.animateWithDuration(0.0, animations: { () -> Void in
+            self.dateAndTimeTableHeightConstraint.constant = CGFloat(self.dateAndTimeTable.numberOfRowsInSection(0)) * 40.0
+            self.view.layoutIfNeeded()
+        })
+    }
+    
+    ///////////////////////////////
+    // TABLE VIEW CELL TYPE SET UPS
+    ///////////////////////////////
     func setupRepeatsCell (tableView: UITableView, indexPath: NSIndexPath) -> AlertsAndRepeatsCell{
         let cellIdentifier = "repeatCell"
         let tableViewCell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! AlertsAndRepeatsCell
@@ -348,7 +364,56 @@ class CreateEventViewController: UIViewController, UITabBarDelegate, UITableView
         return tableViewCell
     }
     
+    func setupStartDateCell (tableView: UITableView, indexPath: NSIndexPath, startDate: NSDate) -> StartEndDateCell {
+        let cellIdentifier = "startDateCell"
+        let tableViewCell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! StartEndDateCell
+        let label = tableViewCell.viewWithTag(1) as! UILabel
+        label.text = self.eventType == .Event ? "Start Date" : "Deadline"
+        tableViewCell.setCellDateTime(startDate)
+        return tableViewCell
+    }
     
+    func setupEndDateCell (tableView: UITableView, indexPath: NSIndexPath, endDate: NSDate) -> StartEndDateCell {
+        let cellIdentifier = "endDateCell"
+        let tableViewCell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! StartEndDateCell
+        tableViewCell.setCellDateTime(endDate)
+        return tableViewCell
+    }
+    
+    func setupFullDayEventCell (tableView: UITableView, indexPath: NSIndexPath) -> FullDayEventCell {
+        let cellIdentifier = "fullDayEventCell"
+        let tableViewCell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! FullDayEventCell
+        tableViewCell.switchDelegate = self
+        return tableViewCell
+    }
+    
+    func setUpEventNameAndLocationCells (tableView: UITableView, indexPath: NSIndexPath) -> EventTitleLocationTableViewCell {
+        let cellIdentifier = "eventTitleLocationCell"
+        let tableViewCell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! EventTitleLocationTableViewCell
+        tableViewCell.textField.placeholder = indexPath.row == 1 ? "Location" : "Event Name"
+        tableViewCell.textField.delegate = tableViewCell
+        return tableViewCell
+    }
+    
+    func setupDatePickerCell (tableView: UITableView, indexPath: NSIndexPath, forDateCell: String) -> DatePickerCell {
+        print("setting up datepicker cell")
+        let cellIdentifier = "datePickerCell"
+        let tableViewCell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! DatePickerCell
+        let datePicker = tableViewCell.datePicker as! StartEndDatePicker
+        datePicker.forDate = forDateCell
+        tableViewCell.datePicker.addTarget(self, action: Selector("datePickerChanged:"), forControlEvents: .ValueChanged)
+        return tableViewCell
+    }
+    
+    func datePickerChanged (datePicker: UIDatePicker) {
+        let newDatePicker = datePicker as! StartEndDatePicker
+        if newDatePicker.forDate == "startDateCell" {
+            self.startDate = newDatePicker.date
+        } else {
+            self.endDate = newDatePicker.date
+        }
+        self.dateAndTimeTable.reloadData()
+    }
 }
 
 

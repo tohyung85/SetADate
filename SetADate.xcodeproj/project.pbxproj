@@ -15,6 +15,9 @@
 		8B47F36A1BC0CBDC00A6BE24 /* GroupsScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B47F3691BC0CBDC00A6BE24 /* GroupsScreenViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		8B47F3721BC1204600A6BE24 /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B47F3711BC1204600A6BE24 /* ContainerViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		8B4E64F21BC2A5B800723576 /* PendingRequestsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4E64F11BC2A5B800723576 /* PendingRequestsViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		8B61C7881BCFD4820049EE17 /* StartEndDateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B61C7871BCFD4820049EE17 /* StartEndDateCell.swift */; settings = {ASSET_TAGS = (); }; };
+		8B61C78A1BCFE7860049EE17 /* DatePickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B61C7891BCFE7860049EE17 /* DatePickerCell.swift */; settings = {ASSET_TAGS = (); }; };
+		8B61C78C1BCFEE320049EE17 /* StartEndDatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B61C78B1BCFEE320049EE17 /* StartEndDatePicker.swift */; settings = {ASSET_TAGS = (); }; };
 		8B6539191BB762B30061BF86 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6539181BB762B30061BF86 /* AppDelegate.swift */; };
 		8B65391B1BB762B30061BF86 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B65391A1BB762B30061BF86 /* ViewController.swift */; };
 		8B65391E1BB762B30061BF86 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8B65391C1BB762B30061BF86 /* Main.storyboard */; settings = {ASSET_TAGS = (1, ); }; };
@@ -60,6 +63,9 @@
 		8B47F3691BC0CBDC00A6BE24 /* GroupsScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupsScreenViewController.swift; sourceTree = "<group>"; };
 		8B47F3711BC1204600A6BE24 /* ContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerViewController.swift; sourceTree = "<group>"; };
 		8B4E64F11BC2A5B800723576 /* PendingRequestsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PendingRequestsViewController.swift; sourceTree = "<group>"; };
+		8B61C7871BCFD4820049EE17 /* StartEndDateCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StartEndDateCell.swift; path = ../StartEndDateCell.swift; sourceTree = "<group>"; };
+		8B61C7891BCFE7860049EE17 /* DatePickerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatePickerCell.swift; sourceTree = "<group>"; };
+		8B61C78B1BCFEE320049EE17 /* StartEndDatePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartEndDatePicker.swift; sourceTree = "<group>"; };
 		8B6539151BB762B30061BF86 /* SetADate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SetADate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B6539181BB762B30061BF86 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8B65391A1BB762B30061BF86 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -146,10 +152,13 @@
 				8B0F49A61BBAC0CB005A1CC2 /* Extensions.swift */,
 				8B65391C1BB762B30061BF86 /* Main.storyboard */,
 				8B851FE71BC5666C0054D0FB /* CreateEventViewController.swift */,
+				8B61C78B1BCFEE320049EE17 /* StartEndDatePicker.swift */,
+				8B61C7891BCFE7860049EE17 /* DatePickerCell.swift */,
 				8B8D1D9E1BCBF90A00EF3D41 /* RepeatsSelectionViewController.swift */,
 				8B44F11D1BCA684300D8EE5F /* AlertsSelectionViewController.swift */,
 				8B887D631BC8FDC3009FB4AC /* EventTitleLocationTableViewCell.swift */,
 				8B887D651BC913C6009FB4AC /* FullDayEventCell.swift */,
+				8B61C7871BCFD4820049EE17 /* StartEndDateCell.swift */,
 				8B8D1D9C1BCBF07F00EF3D41 /* AlertsAndRepeatsCell.swift */,
 				8B8D1D9A1BCBE09100EF3D41 /* AlertsSelectionCell.swift */,
 				8B8D1D981BCBDCAF00EF3D41 /* EventObject.swift */,
@@ -315,6 +324,7 @@
 				8B8D1D9F1BCBF90A00EF3D41 /* RepeatsSelectionViewController.swift in Sources */,
 				8B47F36A1BC0CBDC00A6BE24 /* GroupsScreenViewController.swift in Sources */,
 				8B65394C1BB7C68D0061BF86 /* CalendarViewController.swift in Sources */,
+				8B61C78A1BCFE7860049EE17 /* DatePickerCell.swift in Sources */,
 				8B0F49A21BBAABE6005A1CC2 /* CalendarView.swift in Sources */,
 				8B4E64F21BC2A5B800723576 /* PendingRequestsViewController.swift in Sources */,
 				8B887D661BC913C6009FB4AC /* FullDayEventCell.swift in Sources */,
@@ -327,8 +337,10 @@
 				8B65391B1BB762B30061BF86 /* ViewController.swift in Sources */,
 				8B6539191BB762B30061BF86 /* AppDelegate.swift in Sources */,
 				8B6539481BB794CF0061BF86 /* CalendarScreenViewController.swift in Sources */,
+				8B61C78C1BCFEE320049EE17 /* StartEndDatePicker.swift in Sources */,
 				8B8D1D991BCBDCAF00EF3D41 /* EventObject.swift in Sources */,
 				8B8D1D9D1BCBF07F00EF3D41 /* AlertsAndRepeatsCell.swift in Sources */,
+				8B61C7881BCFD4820049EE17 /* StartEndDateCell.swift in Sources */,
 				8B887D641BC8FDC3009FB4AC /* EventTitleLocationTableViewCell.swift in Sources */,
 				8B0F49A71BBAC0CB005A1CC2 /* Extensions.swift in Sources */,
 				8B851FE81BC5666C0054D0FB /* CreateEventViewController.swift in Sources */,
