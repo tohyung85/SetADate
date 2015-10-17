@@ -396,7 +396,6 @@ class CreateEventViewController: UIViewController, UITabBarDelegate, UITableView
     }
     
     func setupDatePickerCell (tableView: UITableView, indexPath: NSIndexPath, forDateCell: String) -> DatePickerCell {
-        print("setting up datepicker cell")
         let cellIdentifier = "datePickerCell"
         let tableViewCell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! DatePickerCell
         let datePicker = tableViewCell.datePicker as! StartEndDatePicker

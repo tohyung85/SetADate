@@ -1,35 +1,44 @@
 //
-//  CalendarScreenViewController.swift
+//  AddAttendeesViewController.swift
 //  SetADate
 //
-//  Created by Joshua  Tan on 27/9/15.
+//  Created by Joshua  Tan on 17/10/15.
 //  Copyright © 2015 Joshua. All rights reserved.
 //
 
 import Foundation
 import UIKit
 
-class CalendarScreenViewController: UIViewController, UITabBarDelegate{
-
-    @IBOutlet weak var selectionBar: UITabBar!
-    @IBOutlet weak var calendarScreenBarButton: UITabBarItem!
-    @IBOutlet weak var groupsBarButtonItems: UITabBarItem!
-    @IBOutlet weak var pendingRequestsBarButtonItem: UITabBarItem!
+class AddAttendeesViewController: UIViewController, UITabBarDelegate {
     
-    var containerVC : ContainerViewController?
+    @IBOutlet weak var selectionBar: UITabBar!
+    
+    var containerVC : AttendeesContainerViewController?
     
     let themeBackGroundColor = UIColor(red: 59.0/255, green: 186.0/255, blue: 174.0/255, alpha: 1.0)
     let themeForeGroundColor = UIColor.whiteColor()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        selectionBar.delegate = self
+        self.selectionBar.delegate = self
         performTabBarConfigurations()
+        self.selectionBar.selectedItem = self.selectionBar.items?.first
+        
+        // To remove shadow image of navigation view controller and hence the underline of the bar
+        for parent in self.navigationController!.navigationBar.subviews {
+            for childView in parent.subviews {
+                if(childView is UIImageView) {
+                    childView.removeFromSuperview()
+                }
+            }
+        }
     }
     
-    override func viewWillAppear(animated: Bool) {
-        UITabBar.appearance().selectionIndicatorImage = UIImage().makeImageWithColorAndSize(self.themeBackGroundColor, size: CGSizeMake(selectionBar.frame.width/3, selectionBar.frame.height))
-    }
+    
+    ///////////////////////////////
+    // TAB BAR FUNCTIONS
+    ///////////////////////////////
+    
     
     func performTabBarConfigurations() {
         // Sets default text color of tab bar items
@@ -39,10 +48,10 @@ class CalendarScreenViewController: UIViewController, UITabBarDelegate{
         UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName : self.themeForeGroundColor], forState: UIControlState.Selected)
         
         //Removes default grey shadow of tab bar
-        selectionBar.clipsToBounds = true
+        self.selectionBar.clipsToBounds = true
         
         // Sets the background color of the selected UITabBarItem (using and plain colored UIImage with the width = 1/3 of the tabBar (if you have 3 items) and the height of the tabBar)
-        UITabBar.appearance().selectionIndicatorImage = UIImage().makeImageWithColorAndSize(self.themeBackGroundColor, size: CGSizeMake(selectionBar.frame.width/3, selectionBar.frame.height))
+        UITabBar.appearance().selectionIndicatorImage = UIImage().makeImageWithColorAndSize(self.themeBackGroundColor, size: CGSizeMake(self.selectionBar.frame.width/2, self.selectionBar.frame.height))
         
         // Sets default tab bar image colors
         for item in (self.selectionBar.items)! as [UITabBarItem] {
@@ -53,6 +62,7 @@ class CalendarScreenViewController: UIViewController, UITabBarDelegate{
     }
     
     func tabBar(tabBar: UITabBar, didSelectItem item: UITabBarItem) {
+        
         self.containerVC?.newView = self.selectionBar.items?.indexOf(item)
         // Don't present the same view controller twice!
         // Prevent Unbalanced calls to begin/end appearance transitions error
@@ -60,13 +70,12 @@ class CalendarScreenViewController: UIViewController, UITabBarDelegate{
             self.containerVC!.changeContainerView()
         }
         tabBar.selectedItem = item
-
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if let segueIdentifier = segue.identifier {
-            if segueIdentifier == "displayContainerView" {
-                self.containerVC = segue.destinationViewController as? ContainerViewController
+            if segueIdentifier == "displayAttendeesContainerView" {
+                self.containerVC = segue.destinationViewController as? AttendeesContainerViewController
                 if let containerVC = self.containerVC {
                     // note: prepareForSegue called before viewDidLoad
                     if self.selectionBar.selectedItem == nil {
@@ -78,5 +87,6 @@ class CalendarScreenViewController: UIViewController, UITabBarDelegate{
             }
         }
     }
+
     
 }

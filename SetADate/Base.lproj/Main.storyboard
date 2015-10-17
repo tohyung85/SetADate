@@ -55,7 +55,7 @@
                                 </constraints>
                                 <items>
                                     <tabBarItem title="Calendar" image="calendarIcon" id="tjp-zm-A2q"/>
-                                    <tabBarItem title="Groups" image="groupsImage" id="CPn-X9-INO"/>
+                                    <tabBarItem title="Groups" image="groupsImage1" id="CPn-X9-INO"/>
                                     <tabBarItem title="Pending Requests" image="pendingRequests" id="8UZ-vR-BhC"/>
                                 </items>
                                 <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -537,6 +537,9 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="swP-Tb-R3f" kind="show" identifier="attendeesSelectionSegue" id="3K7-HX-EBS"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -681,7 +684,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8kU-eR-dWy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2133" y="105"/>
+            <point key="canvasLocation" x="2133" y="-328"/>
         </scene>
         <!--Repeats Selection View Controller-->
         <scene sceneID="nRq-0t-EUp">
@@ -752,7 +755,59 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aNJ-Cc-hat" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2133" y="915"/>
+            <point key="canvasLocation" x="2133" y="1359"/>
+        </scene>
+        <!--Add Attendees View Controller-->
+        <scene sceneID="0Uk-Sf-bcU">
+            <objects>
+                <viewController id="swP-Tb-R3f" customClass="AddAttendeesViewController" customModule="SetADate" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="oiE-FR-ili"/>
+                        <viewControllerLayoutGuide type="bottom" id="lc5-zr-dct"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="hcw-xj-ytL">
+                        <rect key="frame" x="0.0" y="64" width="414" height="672"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tabBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ve6-fm-TTc">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
+                                <color key="backgroundColor" red="0.23137254900000001" green="0.72941176470000002" blue="0.68235294120000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="49" id="zSY-c1-YhT"/>
+                                </constraints>
+                                <items>
+                                    <tabBarItem title="Contacts" image="groupsImage" id="g8m-y2-3wF"/>
+                                    <tabBarItem title="Groups" image="groupsImage1" id="nJt-XD-pvh"/>
+                                </items>
+                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="tintColor">
+                                        <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </tabBar>
+                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="S2h-7v-6Ge">
+                                <rect key="frame" x="0.0" y="49" width="414" height="623"/>
+                                <connections>
+                                    <segue destination="9uK-8E-eJl" kind="embed" identifier="displayAttendeesContainerView" id="kp8-R9-WOq"/>
+                                </connections>
+                            </containerView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="ve6-fm-TTc" firstAttribute="leading" secondItem="hcw-xj-ytL" secondAttribute="leadingMargin" constant="-20" id="4ED-7i-PNf"/>
+                            <constraint firstItem="ve6-fm-TTc" firstAttribute="top" secondItem="oiE-FR-ili" secondAttribute="bottom" id="69f-sw-RKG"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="ve6-fm-TTc" secondAttribute="trailing" constant="-20" id="qZK-Je-eVi"/>
+                        </constraints>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
+                    <connections>
+                        <outlet property="selectionBar" destination="ve6-fm-TTc" id="IqC-a4-2Bv"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0mI-q8-gKv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2133" y="477"/>
         </scene>
         <!--Groups Screen View Controller-->
         <scene sceneID="8ir-6o-f0m">
@@ -810,6 +865,70 @@
             </objects>
             <point key="canvasLocation" x="632" y="2083"/>
         </scene>
+        <!--Add Contacts View Controller-->
+        <scene sceneID="hzb-WP-eBn">
+            <objects>
+                <viewController storyboardIdentifier="addContactsView" useStoryboardIdentifierAsRestorationIdentifier="YES" id="ZGU-mH-gtC" customClass="AddContactsViewController" customModule="SetADate" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="TKX-fy-Yph"/>
+                        <viewControllerLayoutGuide type="bottom" id="TYy-YC-60n"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="3fF-GS-xS1">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="623"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Add Contacts" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="arX-Mp-HPR">
+                                <rect key="frame" x="123" y="245" width="105" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="414" height="623"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9g1-TX-ReZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3075" y="357.5"/>
+        </scene>
+        <!--Attendees Container View Controller-->
+        <scene sceneID="Cbu-YB-x0t">
+            <objects>
+                <viewController id="9uK-8E-eJl" customClass="AttendeesContainerViewController" customModule="SetADate" customModuleProvider="target" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="L3Z-nK-86m" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2615" y="538.5"/>
+        </scene>
+        <!--Add Groups View Controller-->
+        <scene sceneID="Ndn-Kr-wlN">
+            <objects>
+                <viewController storyboardIdentifier="addGroupsView" useStoryboardIdentifierAsRestorationIdentifier="YES" id="jPU-Fa-YrO" customClass="AddGroupsViewController" customModule="SetADate" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="e4q-qt-Qr6"/>
+                        <viewControllerLayoutGuide type="bottom" id="auh-Ps-0vd"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="9a5-eO-i19">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="623"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Add Groups" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h4A-cf-ov1">
+                                <rect key="frame" x="125" y="163" width="91" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="414" height="623"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ohc-zk-SFg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3075" y="1069.5"/>
+        </scene>
     </scenes>
     <resources>
         <image name="arrowLeft" width="12" height="16"/>
@@ -818,6 +937,7 @@
         <image name="deadlineIcon" width="30" height="30"/>
         <image name="eventIcon" width="40" height="40"/>
         <image name="groupsImage" width="40" height="40"/>
+        <image name="groupsImage1" width="40" height="40"/>
         <image name="pendingRequests" width="42" height="42"/>
         <image name="plusIcon" width="35" height="35"/>
     </resources>
