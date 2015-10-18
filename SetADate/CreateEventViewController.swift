@@ -28,6 +28,7 @@ class CreateEventViewController: UIViewController, UITabBarDelegate, UITableView
     var repeats : [String : Int]?
     var startDate : NSDate?
     var endDate : NSDate?
+    var attendeesName : [String]?
     
     var showStartDatePicker : Bool?
     var showEndDatePicker : Bool?
@@ -325,6 +326,11 @@ class CreateEventViewController: UIViewController, UITabBarDelegate, UITableView
             repeatsVC.masterVC = self
             repeatsVC.selectedRepeat = self.repeats
         }
+        
+//        if segue.identifier == "displayAttendeesContainerView" {
+//            let containerVC = segue.destinationViewController as! AttendeesContainerViewController
+//            
+//        }
     }
     
     

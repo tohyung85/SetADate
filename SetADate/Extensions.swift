@@ -107,3 +107,9 @@ extension UIColor {
     }
 }
 
+extension String {
+    func getFirstLetter() -> String {
+        return String(self[self.startIndex]).uppercaseString
+    }
+}
+
