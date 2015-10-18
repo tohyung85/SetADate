@@ -39,6 +39,7 @@
 		8B9344751BD1BEBE0099AC16 /* AttendeesContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9344741BD1BEBE0099AC16 /* AttendeesContainerViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		8B9344771BD1BFD70099AC16 /* AddContactsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9344761BD1BFD70099AC16 /* AddContactsViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		8B9344791BD1C00F0099AC16 /* AddGroupsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9344781BD1C00F0099AC16 /* AddGroupsViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		8BE3B2361BD361DD00FF0E99 /* InitialAddAttendeesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BE3B2351BD361DD00FF0E99 /* InitialAddAttendeesViewController.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -97,6 +98,7 @@
 		8B9344741BD1BEBE0099AC16 /* AttendeesContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttendeesContainerViewController.swift; sourceTree = "<group>"; };
 		8B9344761BD1BFD70099AC16 /* AddContactsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddContactsViewController.swift; sourceTree = "<group>"; };
 		8B9344781BD1C00F0099AC16 /* AddGroupsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddGroupsViewController.swift; sourceTree = "<group>"; };
+		8BE3B2351BD361DD00FF0E99 /* InitialAddAttendeesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InitialAddAttendeesViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,10 +158,11 @@
 				8B65394B1BB7C68D0061BF86 /* CalendarViewController.swift */,
 				8B9344731BD1BD980099AC16 /* CalendarAndCalendarTable */,
 				8B65391C1BB762B30061BF86 /* Main.storyboard */,
-				8B9344711BD1BB830099AC16 /* AddAttendeesViewController.swift */,
-				8B9344741BD1BEBE0099AC16 /* AttendeesContainerViewController.swift */,
 				8B9344761BD1BFD70099AC16 /* AddContactsViewController.swift */,
 				8B9344781BD1C00F0099AC16 /* AddGroupsViewController.swift */,
+				8B9344741BD1BEBE0099AC16 /* AttendeesContainerViewController.swift */,
+				8B9344711BD1BB830099AC16 /* AddAttendeesViewController.swift */,
+				8BE3B2351BD361DD00FF0E99 /* InitialAddAttendeesViewController.swift */,
 				8B851FE71BC5666C0054D0FB /* CreateEventViewController.swift */,
 				8B8D1D9E1BCBF90A00EF3D41 /* RepeatsSelectionViewController.swift */,
 				8B44F11D1BCA684300D8EE5F /* AlertsSelectionViewController.swift */,
@@ -374,6 +377,7 @@
 				8B8D1D9D1BCBF07F00EF3D41 /* AlertsAndRepeatsCell.swift in Sources */,
 				8B61C7881BCFD4820049EE17 /* StartEndDateCell.swift in Sources */,
 				8B887D641BC8FDC3009FB4AC /* EventTitleLocationTableViewCell.swift in Sources */,
+				8BE3B2361BD361DD00FF0E99 /* InitialAddAttendeesViewController.swift in Sources */,
 				8B0F49A71BBAC0CB005A1CC2 /* Extensions.swift in Sources */,
 				8B851FE81BC5666C0054D0FB /* CreateEventViewController.swift in Sources */,
 			);

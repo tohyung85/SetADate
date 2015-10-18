@@ -538,7 +538,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="swP-Tb-R3f" kind="show" identifier="attendeesSelectionSegue" id="3K7-HX-EBS"/>
+                                            <segue destination="KdH-80-e2v" kind="show" identifier="attendeesSelectionSegue" id="hJM-qQ-3Vy"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -598,6 +598,7 @@
                                 <action selector="cancelButtonPressed:" destination="eh3-qK-xTA" id="R1L-nT-n0h"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Create" id="pzH-jZ-aiG"/>
                     </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                     <connections>
@@ -614,6 +615,67 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JXr-2G-pIt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1601" y="477"/>
+        </scene>
+        <!--Initial Add Attendees View Controller-->
+        <scene sceneID="Tgv-Sa-xPc">
+            <objects>
+                <viewController id="KdH-80-e2v" customClass="InitialAddAttendeesViewController" customModule="SetADate" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="b8f-4p-AV6"/>
+                        <viewControllerLayoutGuide type="bottom" id="mMN-zO-45n"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Nyu-Ji-p3Q">
+                        <rect key="frame" x="0.0" y="64" width="414" height="672"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="vLd-re-V6P">
+                                <rect key="frame" x="0.0" y="51" width="414" height="128"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="128" id="dDA-NW-SOz"/>
+                                </constraints>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="ZIk-nX-mxL">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ZIk-nX-mxL" id="vVG-ZM-1FD">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="contactAdd" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GI1-Ur-gB6">
+                                                    <rect key="frame" x="379" y="11" width="22" height="22"/>
+                                                    <color key="tintColor" red="0.2312226134" green="0.72941176470000002" blue="0.68199583890000004" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <connections>
+                                                        <segue destination="swP-Tb-R3f" kind="show" identifier="addContactsAndGroupsSegue" id="wym-gZ-hqa"/>
+                                                    </connections>
+                                                </button>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gEg-8j-ew8">
+                                                    <rect key="frame" x="8" y="7" width="358" height="30"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                </textField>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="vLd-re-V6P" secondAttribute="trailing" constant="-20" id="3yK-UU-fEn"/>
+                            <constraint firstItem="vLd-re-V6P" firstAttribute="top" secondItem="b8f-4p-AV6" secondAttribute="bottom" constant="51" id="Mkn-lC-ydO"/>
+                            <constraint firstItem="vLd-re-V6P" firstAttribute="leading" secondItem="Nyu-Ji-p3Q" secondAttribute="leadingMargin" constant="-20" id="w9K-dY-qN5"/>
+                        </constraints>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
+                    <connections>
+                        <outlet property="tableView" destination="vLd-re-V6P" id="xee-pi-kFe"/>
+                        <outlet property="tableViewHeightConstraint" destination="dDA-NW-SOz" id="PuJ-Gz-nMZ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8sv-Kp-A0X" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2133" y="475"/>
         </scene>
         <!--Alerts Selection View Controller-->
         <scene sceneID="AAc-aB-Ecy">
@@ -807,7 +869,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0mI-q8-gKv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2133" y="477"/>
+            <point key="canvasLocation" x="2591" y="475"/>
         </scene>
         <!--Groups Screen View Controller-->
         <scene sceneID="8ir-6o-f0m">
@@ -903,7 +965,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9g1-TX-ReZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3075" y="357.5"/>
+            <point key="canvasLocation" x="3533" y="355.5"/>
         </scene>
         <!--Attendees Container View Controller-->
         <scene sceneID="Cbu-YB-x0t">
@@ -911,7 +973,7 @@
                 <viewController id="9uK-8E-eJl" customClass="AttendeesContainerViewController" customModule="SetADate" customModuleProvider="target" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="L3Z-nK-86m" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2615" y="538.5"/>
+            <point key="canvasLocation" x="3073" y="536.5"/>
         </scene>
         <!--Add Groups View Controller-->
         <scene sceneID="Ndn-Kr-wlN">
@@ -939,7 +1001,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ohc-zk-SFg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3075" y="1069.5"/>
+            <point key="canvasLocation" x="3533" y="1067.5"/>
         </scene>
     </scenes>
     <resources>

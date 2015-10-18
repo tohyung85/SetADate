@@ -36,6 +36,8 @@ class RepeatsSelectionViewController : UIViewController, UITableViewDelegate, UI
             self.noRepeatsTableHeightConstraint.constant = CGFloat(self.noRepeatsTable.numberOfRowsInSection(0)) * 44.0 - 1.0
             self.view.layoutIfNeeded()
         })
+        
+        self.navigationItem.title = "Repeats"
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {

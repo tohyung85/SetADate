@@ -38,6 +38,8 @@ class AlertsSelectionViewController: UIViewController, UITableViewDelegate, UITa
             self.noAlertsTableHeightConstraint.constant = CGFloat(self.noAlertsTable.numberOfRowsInSection(0)) * 44.0 - 1.0
             self.view.layoutIfNeeded()
         })
+        
+        self.navigationItem.title = "Alerts"
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
