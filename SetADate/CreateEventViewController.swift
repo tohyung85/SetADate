@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import Contacts
 
 class CreateEventViewController: UIViewController, UITabBarDelegate, UITableViewDataSource, UITableViewDelegate, FullDayEventSwitchDelegate {
     
@@ -28,7 +29,7 @@ class CreateEventViewController: UIViewController, UITabBarDelegate, UITableView
     var repeats : [String : Int]?
     var startDate : NSDate?
     var endDate : NSDate?
-    var attendeesName : [String]?
+    var attendees : [CNContact]?
     
     var showStartDatePicker : Bool?
     var showEndDatePicker : Bool?
@@ -75,6 +76,7 @@ class CreateEventViewController: UIViewController, UITabBarDelegate, UITableView
         self.endDate = self.startDate?.dateByAddingTimeInterval(60.0 * 60.0)
         self.alerts = ["None" : 0]
         self.repeats = ["Never" : 0]
+        self.attendees = [CNContact]()
     }
     
     override func viewWillAppear(animated: Bool) {

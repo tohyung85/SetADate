@@ -649,11 +649,6 @@
                                                         <segue destination="swP-Tb-R3f" kind="show" identifier="addContactsAndGroupsSegue" id="wym-gZ-hqa"/>
                                                     </connections>
                                                 </button>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gEg-8j-ew8">
-                                                    <rect key="frame" x="8" y="7" width="358" height="30"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits"/>
-                                                </textField>
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -669,11 +664,28 @@
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                     <connections>
+                        <outlet property="searchDisplayController" destination="fge-wu-rV5" id="YxU-UM-oVQ"/>
                         <outlet property="tableView" destination="vLd-re-V6P" id="xee-pi-kFe"/>
                         <outlet property="tableViewHeightConstraint" destination="dDA-NW-SOz" id="PuJ-Gz-nMZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8sv-Kp-A0X" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="SYX-xQ-zb9">
+                    <connections>
+                        <outlet property="delegate" destination="KdH-80-e2v" id="Rvi-fb-GCn"/>
+                        <outlet property="searchContentsController" destination="KdH-80-e2v" id="ac7-WK-4x8"/>
+                        <outlet property="searchResultsDataSource" destination="KdH-80-e2v" id="hYO-gS-6Tj"/>
+                        <outlet property="searchResultsDelegate" destination="KdH-80-e2v" id="3th-8O-X3p"/>
+                    </connections>
+                </searchDisplayController>
+                <searchDisplayController id="fge-wu-rV5">
+                    <connections>
+                        <outlet property="delegate" destination="KdH-80-e2v" id="bJi-8S-26W"/>
+                        <outlet property="searchContentsController" destination="KdH-80-e2v" id="3od-vV-L0e"/>
+                        <outlet property="searchResultsDataSource" destination="KdH-80-e2v" id="kik-pv-Y6z"/>
+                        <outlet property="searchResultsDelegate" destination="KdH-80-e2v" id="ogn-1j-eWV"/>
+                    </connections>
+                </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="2133" y="475"/>
         </scene>
@@ -928,44 +940,47 @@
             <point key="canvasLocation" x="632" y="2083"/>
         </scene>
         <!--Add Contacts View Controller-->
-        <scene sceneID="hzb-WP-eBn">
+        <scene sceneID="iaK-7A-4Xl">
             <objects>
-                <viewController storyboardIdentifier="addContactsView" useStoryboardIdentifierAsRestorationIdentifier="YES" id="ZGU-mH-gtC" customClass="AddContactsViewController" customModule="SetADate" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="addContactsView" useStoryboardIdentifierAsRestorationIdentifier="YES" id="gzE-01-j5t" customClass="AddContactsViewController" customModule="SetADate" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="TKX-fy-Yph"/>
-                        <viewControllerLayoutGuide type="bottom" id="TYy-YC-60n"/>
+                        <viewControllerLayoutGuide type="top" id="vKT-Fa-j0j"/>
+                        <viewControllerLayoutGuide type="bottom" id="Z8G-k4-WE2"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="3fF-GS-xS1">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="623"/>
+                    <view key="view" contentMode="scaleToFill" id="d5K-ec-inF">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="MWs-Zd-yVh">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="623"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ldE-gL-6kc">
+                                <rect key="frame" x="0.0" y="44" width="414" height="692"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="Yt8-uH-E6d">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="V47-t6-EnB">
                                         <rect key="frame" x="0.0" y="28" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Yt8-uH-E6d" id="SD0-2W-YNU">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="V47-t6-EnB" id="Q6k-O9-eFk">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <searchBar contentMode="redraw" fixedFrame="YES" placeholder="Search" translatesAutoresizingMaskIntoConstraints="NO" id="FGo-DA-FGq">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="414" height="623"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                     <connections>
-                        <outlet property="contactsTable" destination="MWs-Zd-yVh" id="qkK-c5-OJg"/>
+                        <outlet property="contactsTable" destination="ldE-gL-6kc" id="Jec-Wx-tpT"/>
+                        <outlet property="searchBar" destination="FGo-DA-FGq" id="y8r-aN-T7b"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="9g1-TX-ReZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="AO1-qg-sf5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3533" y="355.5"/>
+            <point key="canvasLocation" x="3533" y="296"/>
         </scene>
         <!--Attendees Container View Controller-->
         <scene sceneID="Cbu-YB-x0t">
@@ -990,7 +1005,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Add Groups" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h4A-cf-ov1">
                                 <rect key="frame" x="162" y="190" width="91" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>

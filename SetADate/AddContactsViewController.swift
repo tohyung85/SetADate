@@ -10,15 +10,18 @@ import Foundation
 import UIKit
 import Contacts
 
-class AddContactsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class AddContactsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, UIScrollViewDelegate {
     
     var store: [CNContact]?
     var masterVC : CreateEventViewController?
     var contactsDictionary : [String : [CNContact]]?
     var contactsDictionaryKeys : [String]?
     var contactsSectionTitle : [String]?
+    var filteredContactsList : [CNContact]?
+    var searchActive: Bool?
     
     @IBOutlet weak var contactsTable: UITableView!
+    @IBOutlet weak var searchBar: UISearchBar!
     
     let indexTitles = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T","U", "V", "W", "X" ,"Z", "#"]
     
@@ -29,6 +32,10 @@ class AddContactsViewController: UIViewController, UITableViewDataSource, UITabl
         let contactStore = CNContactStore()
         self.contactsTable.delegate = self
         self.contactsTable.dataSource = self
+        self.searchBar.delegate = self
+        
+        self.filteredContactsList = [CNContact]()
+        self.searchActive = false
         
         switch CNContactStore.authorizationStatusForEntityType(.Contacts) {
         case .Authorized:
@@ -71,40 +78,65 @@ class AddContactsViewController: UIViewController, UITableViewDataSource, UITabl
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        let sectionAlphabet = self.contactsDictionaryKeys![section]
-        if let contactDictionary = self.contactsDictionary {
-            let contactsInSection = contactDictionary[sectionAlphabet]
-            return (contactsInSection?.count)!
+        if (self.searchActive == true) {
+            return (self.filteredContactsList?.count)!
         } else {
-            return 1
+            let sectionAlphabet = self.contactsDictionaryKeys![section]
+            if let contactDictionary = self.contactsDictionary {
+                let contactsInSection = contactDictionary[sectionAlphabet]
+                return (contactsInSection?.count)!
+            } else {
+                return 1
+            }
         }
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cellIdentifier = "cell"
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier)
-        let sectionAlphabet = self.contactsDictionaryKeys![indexPath.section]
-        let contactsInSection = self.contactsDictionary![sectionAlphabet]
-        let contact = contactsInSection![indexPath.row]
-        cell?.textLabel?.text = contact.givenName + " " + contact.familyName
-        cell?.detailTextLabel?.text = "Number"
+        var contact : CNContact?
+        if self.searchActive == true {
+            contact = self.filteredContactsList![indexPath.row]
+        } else {
+            let sectionAlphabet = self.contactsDictionaryKeys![indexPath.section]
+            let contactsInSection = self.contactsDictionary![sectionAlphabet]
+            contact = contactsInSection![indexPath.row]
+        }
+        
+        cell?.textLabel?.text = contact!.givenName + " " + contact!.familyName
         return cell!
     }
 
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return self.contactsDictionaryKeys!.count
+        if self.searchActive == true {
+            return 1
+        } else {
+            return self.contactsDictionaryKeys!.count
+        }
     }
     
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return self.contactsDictionaryKeys![section]
+        if self.searchActive == true {
+            return nil
+        } else {
+            return self.contactsDictionaryKeys![section]
+        }
     }
     
     func sectionIndexTitlesForTableView(tableView: UITableView) -> [String]? {
-        return self.indexTitles
+        if self.searchActive == true {
+            return nil
+        } else {
+            return self.indexTitles
+        }
     }
     
     func tableView(tableView: UITableView, sectionForSectionIndexTitle title: String, atIndex index: Int) -> Int {
-
+        
+        if self.searchActive == true {
+            return 1
+        }
+        
         var sectionToShow = self.indexTitles.indexOf(title)!
         var nearestLargeAlphabet = sectionToShow
         var nearestSmallAlphabet = sectionToShow
@@ -137,6 +169,7 @@ class AddContactsViewController: UIViewController, UITableViewDataSource, UITabl
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+
         let indexOfPreviousVC = (self.navigationController?.childViewControllers.count)! - 2
         print(indexOfPreviousVC)
         let previousVC = self.navigationController?.childViewControllers[indexOfPreviousVC]
@@ -173,4 +206,66 @@ class AddContactsViewController: UIViewController, UITableViewDataSource, UITabl
         
         return returnDictionary
     }
+    
+    
+    ///////////////////////////////
+    // SEARCH BAR FUNCTIONS
+    ///////////////////////////////
+    
+    func filterContentForSearchText (searchText: String) {
+        self.filteredContactsList = self.store?.filter({(contact: CNContact) -> Bool in
+            let familyNameMatch = contact.familyName.rangeOfString(searchText)
+            let givenNameMatch = contact.givenName.rangeOfString(searchText)
+            return familyNameMatch != nil || givenNameMatch != nil
+        })
+    }
+    
+    func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
+        self.searchBar.showsCancelButton = true
+        self.searchBar.placeholder = ""
+    }
+    
+    func searchBarCancelButtonClicked(searchBar: UISearchBar) {
+        self.searchBar.text = ""
+        self.searchBar.placeholder = "Search"
+        self.searchActive = false
+        self.searchBar.showsCancelButton = false
+        self.contactsTable.reloadData()
+        view.endEditing(true)
+    }
+    
+    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+        self.searchActive = false
+    }
+    
+    func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
+        self.filterContentForSearchText(searchText)
+        if self.filteredContactsList?.count == 0 {
+            self.searchActive = false
+        } else {
+            self.searchActive = true
+        }
+        
+        self.contactsTable.reloadData()
+    }
+    
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        view.endEditing(true)
+        if self.filteredContactsList?.count == 0 {
+            self.searchActive = false
+        } else {
+            self.searchActive = true
+        }
+        
+        for views in self.searchBar.subviews {
+            for aView in views.subviews {
+                if aView.isKindOfClass(UIButton) {
+                    let button = aView as! UIButton
+                    button.enabled = true
+                    button.userInteractionEnabled = true
+                }
+            }
+        }
+    }
+    
 }

@@ -8,13 +8,16 @@
 
 import Foundation
 import UIKit
+import Contacts
 
 class InitialAddAttendeesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     @IBOutlet weak var tableView: UITableView!
-    var addAttendeesCompleteBarButton : UIBarButtonItem?
-    
     @IBOutlet weak var tableViewHeightConstraint: NSLayoutConstraint!
+
+    var addAttendeesCompleteBarButton : UIBarButtonItem?
+    var attendees : [CNContact]?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -24,6 +27,8 @@ class InitialAddAttendeesViewController: UIViewController, UITableViewDataSource
         self.tableView.dataSource = self
         self.tableView.delegate = self
 
+        self.attendees = [CNContact]()
+        
         // Have to use this to set height for table view due to constraints used in story board.
         UIView.animateWithDuration(0.0, animations: { () -> Void in
             self.tableViewHeightConstraint.constant = CGFloat(self.tableView.numberOfRowsInSection(0)) * 40.0
