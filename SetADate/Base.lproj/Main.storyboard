@@ -635,22 +635,42 @@
                                     <constraint firstAttribute="height" constant="128" id="dDA-NW-SOz"/>
                                 </constraints>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="ZIk-nX-mxL">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="ZIk-nX-mxL" customClass="InitialAddAttendeesTableCell" customModule="SetADate" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ZIk-nX-mxL" id="vVG-ZM-1FD">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="contactAdd" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GI1-Ur-gB6">
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="contactAdd" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GI1-Ur-gB6">
                                                     <rect key="frame" x="379" y="11" width="22" height="22"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="22" id="p6Y-r9-g1z"/>
+                                                        <constraint firstAttribute="height" constant="22" id="wiv-R6-iKM"/>
+                                                    </constraints>
                                                     <color key="tintColor" red="0.2312226134" green="0.72941176470000002" blue="0.68199583890000004" alpha="1" colorSpace="calibratedRGB"/>
                                                     <connections>
                                                         <segue destination="swP-Tb-R3f" kind="show" identifier="addContactsAndGroupsSegue" id="wym-gZ-hqa"/>
                                                     </connections>
                                                 </button>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Oka-a3-zyU">
+                                                    <rect key="frame" x="8" y="0.0" width="363" height="43"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                </textView>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottomMargin" secondItem="Oka-a3-zyU" secondAttribute="bottom" constant="-8" id="Hj7-Yu-ToL"/>
+                                                <constraint firstItem="GI1-Ur-gB6" firstAttribute="leading" secondItem="Oka-a3-zyU" secondAttribute="trailing" constant="8" id="K5C-zp-KXj"/>
+                                                <constraint firstItem="Oka-a3-zyU" firstAttribute="top" secondItem="vVG-ZM-1FD" secondAttribute="topMargin" constant="-8" id="OA9-Zj-KXt"/>
+                                                <constraint firstItem="GI1-Ur-gB6" firstAttribute="top" secondItem="vVG-ZM-1FD" secondAttribute="topMargin" constant="3" id="sFR-3n-ef9"/>
+                                                <constraint firstItem="Oka-a3-zyU" firstAttribute="leading" secondItem="vVG-ZM-1FD" secondAttribute="leadingMargin" id="wUZ-Cp-weo"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="GI1-Ur-gB6" secondAttribute="trailing" constant="5" id="ytz-da-T0O"/>
+                                            </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="attendeesTextField" destination="Oka-a3-zyU" id="Hzl-lj-mRa"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -955,7 +975,7 @@
                                 <rect key="frame" x="0.0" y="44" width="414" height="692"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="V47-t6-EnB">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="V47-t6-EnB" customClass="ContactsSelectionCell" customModule="SetADate" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="V47-t6-EnB" id="Q6k-O9-eFk">

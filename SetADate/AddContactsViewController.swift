@@ -69,6 +69,7 @@ class AddContactsViewController: UIViewController, UITableViewDataSource, UITabl
             contactStore.requestAccessForEntityType(.Contacts, completionHandler: {(Bool, NSError) in
                 print("authorization success? :%@", Bool)
             })
+            // TODO: FREEZE UI
         case .Restricted:
             print("Contacts access restricted")
             // TODO: FREEZE UI
@@ -93,7 +94,7 @@ class AddContactsViewController: UIViewController, UITableViewDataSource, UITabl
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cellIdentifier = "cell"
-        let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier)
+        let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) as! ContactsSelectionCell
         var contact : CNContact?
         if self.searchActive == true {
             contact = self.filteredContactsList![indexPath.row]
@@ -103,8 +104,9 @@ class AddContactsViewController: UIViewController, UITableViewDataSource, UITabl
             contact = contactsInSection![indexPath.row]
         }
         
-        cell?.textLabel?.text = contact!.givenName + " " + contact!.familyName
-        return cell!
+        cell.textLabel?.text = contact!.givenName + " " + contact!.familyName
+        cell.contact = contact!
+        return cell
     }
 
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -170,10 +172,15 @@ class AddContactsViewController: UIViewController, UITableViewDataSource, UITabl
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
 
+        let selectedCell = tableView.cellForRowAtIndexPath(indexPath) as! ContactsSelectionCell
         let indexOfPreviousVC = (self.navigationController?.childViewControllers.count)! - 2
         print(indexOfPreviousVC)
-        let previousVC = self.navigationController?.childViewControllers[indexOfPreviousVC]
-        self.navigationController?.popToViewController((previousVC)!, animated: true)
+        let previousVC = self.navigationController?.childViewControllers[indexOfPreviousVC] as! InitialAddAttendeesViewController
+        if (previousVC.attendees?.contains(selectedCell.contact!) == false) {
+            previousVC.attendees?.append(selectedCell.contact!)
+        }
+
+        self.navigationController?.popToViewController(previousVC, animated: true)
     }
     
     func classifyContactsIntoAlphabets (store: [CNContact], buckets: [String]) -> [String : [CNContact]] {
