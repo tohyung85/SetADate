@@ -31,7 +31,6 @@ class AddContactsViewController: UIViewController, UITableViewDataSource, UITabl
         self.store = [CNContact]()
         let contactStore = CNContactStore()
         self.contactsTable.delegate = self
-        self.contactsTable.dataSource = self
         self.searchBar.delegate = self
         
         self.filteredContactsList = [CNContact]()
@@ -39,6 +38,7 @@ class AddContactsViewController: UIViewController, UITableViewDataSource, UITabl
         
         switch CNContactStore.authorizationStatusForEntityType(.Contacts) {
         case .Authorized:
+            self.contactsTable.dataSource = self
             let keysToFetch = [CNContactFamilyNameKey, CNContactGivenNameKey, CNContactPhoneNumbersKey]
             let fetchRequest = CNContactFetchRequest(keysToFetch: keysToFetch)
             fetchRequest.sortOrder = .FamilyName
@@ -62,23 +62,36 @@ class AddContactsViewController: UIViewController, UITableViewDataSource, UITabl
             }
 
             print("Contacts access authorised")
-        case .Denied:
-            print("Contacts access denied")
-            // TODO: FREEZE UI
         case .NotDetermined:
             contactStore.requestAccessForEntityType(.Contacts, completionHandler: {(Bool, NSError) in
                 print("authorization success? :%@", Bool)
+                self.viewDidLoad()
+
+                dispatch_async(dispatch_get_main_queue(), {
+                    self.viewWillAppear(true)
+                    self.contactsTable.reloadData()
+                })
             })
-            // TODO: FREEZE UI
-        case .Restricted:
-            print("Contacts access restricted")
-            // TODO: FREEZE UI
+        case .Denied, .Restricted:
+            break
         }
-        
+        print("view did load")
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        switch CNContactStore.authorizationStatusForEntityType(.Contacts) {
+        case .Restricted, .Denied :
+        let alertController = UIAlertController(title: "Access to Contacts Required!", message: "Please provide access via Settings -> Privacy -> Contacts", preferredStyle: .Alert)
+        print("Contacts access denied")
+        let alertAction = UIAlertAction(title: "OK", style: .Cancel, handler: nil)
+        alertController.addAction(alertAction)
+        self.presentViewController(alertController, animated: true, completion: nil)
+        default:
+             break
+        }
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
         if (self.searchActive == true) {
             return (self.filteredContactsList?.count)!
         } else {
