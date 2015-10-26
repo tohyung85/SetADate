@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import Contacts
 
-class InitialAddAttendeesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UITextViewDelegate {
+class InitialAddAttendeesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var tableViewHeightConstraint: NSLayoutConstraint!
@@ -18,6 +18,7 @@ class InitialAddAttendeesViewController: UIViewController, UITableViewDataSource
     var addAttendeesCompleteBarButton : UIBarButtonItem?
     var attendees : [CNContact]?
     var textViewHeight : CGFloat?
+    let sectionHeaderTitles = ["Groups", "Contacts"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,34 +32,76 @@ class InitialAddAttendeesViewController: UIViewController, UITableViewDataSource
         self.attendees = [CNContact]()
         self.textViewHeight = 40.0
         
-        // Have to use this to set height for table view due to constraints used in story board.
-        UIView.animateWithDuration(0.0, animations: { () -> Void in
-            self.tableViewHeightConstraint.constant = CGFloat(self.tableView.numberOfRowsInSection(0)) * 44.0
-            self.view.layoutIfNeeded()
-        })
-        
     }
     
     override func viewWillAppear(animated: Bool) {
+        self.tableView.reloadData()
+        // Have to use this to set height for table view due to constraints used in story board.
+        UIView.animateWithDuration(0.0, animations: { () -> Void in
+            let numberOfSections = self.tableView.numberOfSections
+            var numberOfRows = 0
+            for var i = 0; i < numberOfSections; i++ {
+               numberOfRows += self.tableView.numberOfRowsInSection(i)
+            }
+            self.tableViewHeightConstraint.constant = CGFloat(numberOfRows + numberOfSections) * 40.0
+            self.view.layoutIfNeeded()
+        })
         for contact in self.attendees! {
             print(contact.givenName)
         }
 
     }
     
+    ///////////////////////////////
+    // TABLE VIEW FUNCTIONS
+    ///////////////////////////////
+    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+
+        switch section {
+        case 0:
+            return 1
+            // TODO: should return number of groups in groups array
+        case 1:
+            if self.attendees?.count > 0 {
+                print("number of rows with contacts: %d", self.attendees?.count)
+                return (self.attendees?.count)!
+            } else {
+                print("number of rows without contacts")
+                return 1
+            }
+        default:
+            return 1
+        }
+        
+    }
+    
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 2
+    }
+    
+    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return self.sectionHeaderTitles[section]
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cellIdentifier = "cell"
         let cell = self.tableView.dequeueReusableCellWithIdentifier(cellIdentifier) as! InitialAddAttendeesTableCell
-        cell.attendeesTextField.delegate = self
+        if self.attendees?.count > 0 {
+            let contact = self.attendees![indexPath.row]
+            cell.textLabel?.text = contact.givenName + " " + contact.familyName
+            cell.contact = self.attendees![indexPath.row]
+            print("cell with contacts")
+        } else {
+            cell.textLabel?.text = "Add a group or contact"
+            print("cell without contacts")
+        }
         return cell
     }
     
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return self.textViewHeight!
+    func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        let header = view as! UITableViewHeaderFooterView
+        header.contentView.backgroundColor = UIColor.grayishColor()
     }
     
     func addAttendeesComplete (button: UIBarButtonItem) {
@@ -67,26 +110,6 @@ class InitialAddAttendeesViewController: UIViewController, UITableViewDataSource
         print(indexOfPreviousVC)
         let previousVC = self.navigationController?.childViewControllers[indexOfPreviousVC]
         self.navigationController?.popToViewController((previousVC)!, animated: true)
-    }
-    
-    
-    func textViewDidChange(textView: UITextView) {
-        let cell = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0)) as! InitialAddAttendeesTableCell
-        let contentSize = cell.attendeesTextField.sizeThatFits(cell.attendeesTextField.bounds.size)
-        var frame = cell.attendeesTextField.frame
-        frame.size.height = contentSize.height
-        cell.attendeesTextField.frame = frame
-        self.textViewHeight = cell.attendeesTextField.frame.size.height
-        
-        self.tableView.beginUpdates() // Used to animate updates to cell height
-        self.tableView.endUpdates() // cannot use reloaddata() or the cell will be gone and textview cease to be first responder
-        
-        // Have to use this to set height for table view due to constraints used in story board.
-        UIView.animateWithDuration(0.0, animations: { () -> Void in
-            self.tableViewHeightConstraint.constant = cell.attendeesTextField.frame.size.height
-            print(cell.attendeesTextField.frame.height)
-            self.view.layoutIfNeeded()
-        })
     }
     
 }

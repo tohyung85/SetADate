@@ -8,10 +8,10 @@
 
 import Foundation
 import UIKit
+import Contacts
 
 class InitialAddAttendeesTableCell : UITableViewCell {
     
     @IBOutlet weak var attendeesTextField: UITextView!
-    
-
+    var contact: CNContact?
 }

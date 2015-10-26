@@ -91,6 +91,10 @@ class AddContactsViewController: UIViewController, UITableViewDataSource, UITabl
         }
     }
     
+    ///////////////////////////////
+    // TABLE VIEW FUNCTIONS
+    ///////////////////////////////
+    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if (self.searchActive == true) {
             return (self.filteredContactsList?.count)!
