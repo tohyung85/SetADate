@@ -23,7 +23,6 @@ class AddAttendeesViewController: UIViewController, UITabBarDelegate {
         super.viewDidLoad()
         self.selectionBar.delegate = self
         performTabBarConfigurations()
-//        self.selectionBar.selectedItem = self.selectionBar.items?[self.viewInContainerVC!]
         
         // To remove shadow image of navigation view controller and hence the underline of the bar
         for parent in self.navigationController!.navigationBar.subviews {

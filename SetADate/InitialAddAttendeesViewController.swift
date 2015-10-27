@@ -17,6 +17,7 @@ class InitialAddAttendeesViewController: UIViewController, UITableViewDataSource
 
     var addAttendeesCompleteBarButton : UIBarButtonItem?
     var attendees : [CNContact]?
+    var groups : [String]?
     var textViewHeight : CGFloat?
     let sectionHeaderTitles = ["Groups", "Contacts"]
     
@@ -30,6 +31,7 @@ class InitialAddAttendeesViewController: UIViewController, UITableViewDataSource
         self.tableView.delegate = self
 
         self.attendees = [CNContact]()
+        self.groups = ["Avengers", "Justice League", "Fantastic 4"]
         self.textViewHeight = 40.0
         
     }
@@ -51,16 +53,9 @@ class InitialAddAttendeesViewController: UIViewController, UITableViewDataSource
 
         switch section {
         case 0:
-            return 1
+            return 1 + (self.groups?.count)!
             // TODO: should return number of groups in groups array
         case 1:
-//            if self.attendees?.count > 0 {
-//                print("number of rows with contacts: %d", self.attendees?.count)
-//                return (self.attendees?.count)!
-//            } else {
-//                print("number of rows without contacts")
-//                return 1
-//            }
             return 1 + (self.attendees?.count)!
         default:
             return 1
@@ -77,17 +72,36 @@ class InitialAddAttendeesViewController: UIViewController, UITableViewDataSource
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        if (self.attendees?.count)! > indexPath.row {
-            let cellIdentifier = "cell"
-            let cell = self.tableView.dequeueReusableCellWithIdentifier(cellIdentifier) as! InitialAddAttendeesTableCell
-            let contact = self.attendees![indexPath.row]
-            cell.textLabel?.text = contact.givenName + " " + contact.familyName
-            cell.contact = self.attendees![indexPath.row]
-            return cell
-        } else {
-            let cellIndentifier = "initialCell"
-            let cell = self.tableView.dequeueReusableCellWithIdentifier(cellIndentifier)
-            cell!.textLabel?.text = indexPath.section == 1 ? "Add a Contact" : "Add a Group"
+        switch indexPath.section {
+        case 0:
+            if (self.groups?.count)! > indexPath.row {
+                let cellIdentifier = "cell"
+                let cell = self.tableView.dequeueReusableCellWithIdentifier(cellIdentifier) as! InitialAddAttendeesTableCell
+                cell.textLabel?.text = self.groups![indexPath.row]
+                return cell
+            } else {
+                let cellIndentifier = "initialCell"
+                let cell = self.tableView.dequeueReusableCellWithIdentifier(cellIndentifier)
+                cell!.textLabel?.text = "Add a Group"
+                return cell!
+            }
+        case 1:
+            if (self.attendees?.count)! > indexPath.row {
+                let cellIdentifier = "cell"
+                let cell = self.tableView.dequeueReusableCellWithIdentifier(cellIdentifier) as! InitialAddAttendeesTableCell
+                let contact = self.attendees![indexPath.row]
+                cell.textLabel?.text = contact.givenName + " " + contact.familyName
+                cell.contact = self.attendees![indexPath.row]
+                return cell
+            } else {
+                let cellIndentifier = "initialCell"
+                let cell = self.tableView.dequeueReusableCellWithIdentifier(cellIndentifier)
+                cell!.textLabel?.text = "Add a Contact"
+                return cell!
+            }
+        default:
+            print("Error")
+            let cell = self.tableView.dequeueReusableCellWithIdentifier("cell")
             return cell!
         }
     }
@@ -102,15 +116,30 @@ class InitialAddAttendeesViewController: UIViewController, UITableViewDataSource
         let cell = tableView.cellForRowAtIndexPath(indexPath) as! InitialAddAttendeesTableCell
         var indexOfContactToRemove : Int?
 
-        if ((self.attendees?.contains(cell.contact!))! == true) {
-            indexOfContactToRemove = self.attendees?.indexOf(cell.contact!)
-            self.attendees?.removeAtIndex(indexOfContactToRemove!)
-            if self.attendees?.count > 0 {
-                tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
-            } else {
-                tableView.reloadData()
+        switch indexPath.section {
+        case 0:
+            if (self.groups?.count > 0) {
+                self.groups?.removeAtIndex(indexPath.row)
+                if self.groups?.count > 0 {
+                    tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+                } else {
+                    tableView.reloadData()
+                }
             }
+        case 1:
+            if ((self.attendees?.contains(cell.contact!))! == true) {
+                indexOfContactToRemove = self.attendees?.indexOf(cell.contact!)
+                self.attendees?.removeAtIndex(indexOfContactToRemove!)
+                if self.attendees?.count > 0 {
+                    tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+                } else {
+                    tableView.reloadData()
+                }
+            }
+        default:
+            print("error")
         }
+
         self.resizeTable()
     }
     
