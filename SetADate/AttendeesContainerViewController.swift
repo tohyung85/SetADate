@@ -31,7 +31,9 @@ class AttendeesContainerViewController: UIViewController {
         addGroupsViewController.didMoveToParentViewController(self)
         self.containerViewControllers.append(addGroupsViewController)
         
-        self.view.addSubview(addContactsViewController.view)
+        let displayVC = self.currentView == 0 ? addContactsViewController : addGroupsViewController
+        
+        self.view.addSubview(displayVC.view)
         
     }
     

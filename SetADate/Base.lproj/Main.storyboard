@@ -643,28 +643,25 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="detailDisclosureButton" indentationWidth="10" reuseIdentifier="initialCell" id="BmP-az-1R7">
+                                        <rect key="frame" x="0.0" y="72" width="414" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="BmP-az-1R7" id="Yib-ZR-3ST">
+                                            <rect key="frame" x="0.0" y="0.0" width="347" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="swP-Tb-R3f" kind="show" identifier="addAttendeesViewSegue" id="LOw-lQ-e80"/>
+                                        </connections>
+                                    </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tvr-Ug-J4d">
-                                <rect key="frame" x="0.0" y="617" width="414" height="55"/>
-                                <color key="backgroundColor" red="0.23137254900000001" green="0.72941176470000002" blue="0.68235294120000001" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="55" id="oOM-Cb-AVP"/>
-                                </constraints>
-                                <state key="normal" image="plusIcon"/>
-                                <connections>
-                                    <segue destination="swP-Tb-R3f" kind="show" id="gJl-Sk-l1q"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="vLd-re-V6P" firstAttribute="leading" secondItem="Nyu-Ji-p3Q" secondAttribute="leadingMargin" constant="-20" id="BHJ-3m-MjG"/>
                             <constraint firstItem="vLd-re-V6P" firstAttribute="top" secondItem="b8f-4p-AV6" secondAttribute="bottom" constant="51" id="OUV-Hz-dRN"/>
-                            <constraint firstItem="mMN-zO-45n" firstAttribute="top" secondItem="Tvr-Ug-J4d" secondAttribute="bottom" id="Qr9-h5-knC"/>
                             <constraint firstAttribute="trailingMargin" secondItem="vLd-re-V6P" secondAttribute="trailing" constant="-20" id="eQw-f1-XQu"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="Tvr-Ug-J4d" secondAttribute="trailing" constant="-20" id="oso-qo-Osn"/>
-                            <constraint firstItem="Tvr-Ug-J4d" firstAttribute="leading" secondItem="Nyu-Ji-p3Q" secondAttribute="leadingMargin" constant="-20" id="rEx-fO-kew"/>
                         </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>

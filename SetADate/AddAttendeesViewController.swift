@@ -13,6 +13,7 @@ class AddAttendeesViewController: UIViewController, UITabBarDelegate {
     
     @IBOutlet weak var selectionBar: UITabBar!
     
+    var viewInContainerVC: Int?
     var containerVC : AttendeesContainerViewController?
     
     let themeBackGroundColor = UIColor(red: 59.0/255, green: 186.0/255, blue: 174.0/255, alpha: 1.0)
@@ -22,7 +23,7 @@ class AddAttendeesViewController: UIViewController, UITabBarDelegate {
         super.viewDidLoad()
         self.selectionBar.delegate = self
         performTabBarConfigurations()
-        self.selectionBar.selectedItem = self.selectionBar.items?.first
+//        self.selectionBar.selectedItem = self.selectionBar.items?[self.viewInContainerVC!]
         
         // To remove shadow image of navigation view controller and hence the underline of the bar
         for parent in self.navigationController!.navigationBar.subviews {
@@ -79,7 +80,8 @@ class AddAttendeesViewController: UIViewController, UITabBarDelegate {
                 if let containerVC = self.containerVC {
                     // note: prepareForSegue called before viewDidLoad
                     if self.selectionBar.selectedItem == nil {
-                        self.selectionBar.selectedItem = self.selectionBar.items?.first
+                        print("%d", self.viewInContainerVC)
+                        self.selectionBar.selectedItem = self.selectionBar.items?[self.viewInContainerVC!]
                     }
                     let itemSelected = self.selectionBar.selectedItem
                     containerVC.currentView = self.selectionBar.items?.indexOf(itemSelected!)
