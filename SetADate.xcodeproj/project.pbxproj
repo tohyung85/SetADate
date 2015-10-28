@@ -10,6 +10,9 @@
 		8B0F49A21BBAABE6005A1CC2 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B0F49A11BBAABE6005A1CC2 /* CalendarView.swift */; settings = {ASSET_TAGS = (); }; };
 		8B0F49A51BBABC93005A1CC2 /* CalendarDayButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B0F49A41BBABC93005A1CC2 /* CalendarDayButton.swift */; settings = {ASSET_TAGS = (); }; };
 		8B0F49A71BBAC0CB005A1CC2 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B0F49A61BBAC0CB005A1CC2 /* Extensions.swift */; settings = {ASSET_TAGS = (); }; };
+		8B33D58C1BE0FB23003750B5 /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B33D58B1BE0FB23003750B5 /* Group.swift */; settings = {ASSET_TAGS = (); }; };
+		8B33D5901BE1016E003750B5 /* GroupStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B33D58F1BE1016E003750B5 /* GroupStore.swift */; settings = {ASSET_TAGS = (); }; };
+		8B33D5921BE10276003750B5 /* GroupsScreenTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B33D5911BE10276003750B5 /* GroupsScreenTableCell.swift */; settings = {ASSET_TAGS = (); }; };
 		8B44F11E1BCA684300D8EE5F /* AlertsSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B44F11D1BCA684300D8EE5F /* AlertsSelectionViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		8B47F3681BC0C3DE00A6BE24 /* CalendarScreenTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B47F3671BC0C3DE00A6BE24 /* CalendarScreenTableViewCell.swift */; settings = {ASSET_TAGS = (); }; };
 		8B47F36A1BC0CBDC00A6BE24 /* GroupsScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B47F3691BC0CBDC00A6BE24 /* GroupsScreenViewController.swift */; settings = {ASSET_TAGS = (); }; };
@@ -65,6 +68,9 @@
 		8B0F49A11BBAABE6005A1CC2 /* CalendarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
 		8B0F49A41BBABC93005A1CC2 /* CalendarDayButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarDayButton.swift; sourceTree = "<group>"; };
 		8B0F49A61BBAC0CB005A1CC2 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		8B33D58B1BE0FB23003750B5 /* Group.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
+		8B33D58F1BE1016E003750B5 /* GroupStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupStore.swift; sourceTree = "<group>"; };
+		8B33D5911BE10276003750B5 /* GroupsScreenTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupsScreenTableCell.swift; sourceTree = "<group>"; };
 		8B44F11D1BCA684300D8EE5F /* AlertsSelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertsSelectionViewController.swift; sourceTree = "<group>"; };
 		8B47F3671BC0C3DE00A6BE24 /* CalendarScreenTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarScreenTableViewCell.swift; sourceTree = "<group>"; };
 		8B47F3691BC0CBDC00A6BE24 /* GroupsScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupsScreenViewController.swift; sourceTree = "<group>"; };
@@ -130,6 +136,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8B33D58D1BE0FB3B003750B5 /* AddAttendees */ = {
+			isa = PBXGroup;
+			children = (
+				8B9344761BD1BFD70099AC16 /* AddContactsViewController.swift */,
+				8BA31D0B1BD7C90500EC190C /* ContactsSelectionCell.swift */,
+				8B9344781BD1C00F0099AC16 /* AddGroupsViewController.swift */,
+				8B9344741BD1BEBE0099AC16 /* AttendeesContainerViewController.swift */,
+				8B9344711BD1BB830099AC16 /* AddAttendeesViewController.swift */,
+				8BE3B2351BD361DD00FF0E99 /* InitialAddAttendeesViewController.swift */,
+				8BA31D0D1BD7CDF900EC190C /* InitialAddAttendeesTableCell.swift */,
+			);
+			name = AddAttendees;
+			sourceTree = "<group>";
+		};
+		8B33D58E1BE0FCDC003750B5 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				8B33D58F1BE1016E003750B5 /* GroupStore.swift */,
+				8B33D58B1BE0FB23003750B5 /* Group.swift */,
+				8B8D1D981BCBDCAF00EF3D41 /* EventObject.swift */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
 		8B65390C1BB762B20061BF86 = {
 			isa = PBXGroup;
 			children = (
@@ -158,21 +188,16 @@
 				8B6539471BB794CF0061BF86 /* CalendarScreenViewController.swift */,
 				8B47F3711BC1204600A6BE24 /* ContainerViewController.swift */,
 				8B47F3691BC0CBDC00A6BE24 /* GroupsScreenViewController.swift */,
+				8B33D5911BE10276003750B5 /* GroupsScreenTableCell.swift */,
 				8B4E64F11BC2A5B800723576 /* PendingRequestsViewController.swift */,
 				8B65394B1BB7C68D0061BF86 /* CalendarViewController.swift */,
 				8B9344731BD1BD980099AC16 /* CalendarAndCalendarTable */,
 				8B65391C1BB762B30061BF86 /* Main.storyboard */,
-				8BA31D0D1BD7CDF900EC190C /* InitialAddAttendeesTableCell.swift */,
-				8B9344761BD1BFD70099AC16 /* AddContactsViewController.swift */,
-				8BA31D0B1BD7C90500EC190C /* ContactsSelectionCell.swift */,
-				8B9344781BD1C00F0099AC16 /* AddGroupsViewController.swift */,
-				8B9344741BD1BEBE0099AC16 /* AttendeesContainerViewController.swift */,
-				8B9344711BD1BB830099AC16 /* AddAttendeesViewController.swift */,
-				8BE3B2351BD361DD00FF0E99 /* InitialAddAttendeesViewController.swift */,
+				8B33D58D1BE0FB3B003750B5 /* AddAttendees */,
 				8B851FE71BC5666C0054D0FB /* CreateEventViewController.swift */,
 				8B8D1D9E1BCBF90A00EF3D41 /* RepeatsSelectionViewController.swift */,
 				8B44F11D1BCA684300D8EE5F /* AlertsSelectionViewController.swift */,
-				8B8D1D981BCBDCAF00EF3D41 /* EventObject.swift */,
+				8B33D58E1BE0FCDC003750B5 /* Classes */,
 				8B0F49A61BBAC0CB005A1CC2 /* Extensions.swift */,
 				8B9344701BD1BA910099AC16 /* CreateEventCells */,
 				8B65391F1BB762B30061BF86 /* Assets.xcassets */,
@@ -363,6 +388,7 @@
 				8B47F36A1BC0CBDC00A6BE24 /* GroupsScreenViewController.swift in Sources */,
 				8B65394C1BB7C68D0061BF86 /* CalendarViewController.swift in Sources */,
 				8B61C78A1BCFE7860049EE17 /* DatePickerCell.swift in Sources */,
+				8B33D5901BE1016E003750B5 /* GroupStore.swift in Sources */,
 				8B0F49A21BBAABE6005A1CC2 /* CalendarView.swift in Sources */,
 				8B4E64F21BC2A5B800723576 /* PendingRequestsViewController.swift in Sources */,
 				8B887D661BC913C6009FB4AC /* FullDayEventCell.swift in Sources */,
@@ -374,6 +400,7 @@
 				8B47F3721BC1204600A6BE24 /* ContainerViewController.swift in Sources */,
 				8B0F49A51BBABC93005A1CC2 /* CalendarDayButton.swift in Sources */,
 				8B8D1D9B1BCBE09100EF3D41 /* AlertsSelectionCell.swift in Sources */,
+				8B33D5921BE10276003750B5 /* GroupsScreenTableCell.swift in Sources */,
 				8B47F3681BC0C3DE00A6BE24 /* CalendarScreenTableViewCell.swift in Sources */,
 				8B9344771BD1BFD70099AC16 /* AddContactsViewController.swift in Sources */,
 				8B65391B1BB762B30061BF86 /* ViewController.swift in Sources */,
@@ -386,6 +413,7 @@
 				8B61C7881BCFD4820049EE17 /* StartEndDateCell.swift in Sources */,
 				8B887D641BC8FDC3009FB4AC /* EventTitleLocationTableViewCell.swift in Sources */,
 				8BE3B2361BD361DD00FF0E99 /* InitialAddAttendeesViewController.swift in Sources */,
+				8B33D58C1BE0FB23003750B5 /* Group.swift in Sources */,
 				8B0F49A71BBAC0CB005A1CC2 /* Extensions.swift in Sources */,
 				8B851FE81BC5666C0054D0FB /* CreateEventViewController.swift in Sources */,
 			);
