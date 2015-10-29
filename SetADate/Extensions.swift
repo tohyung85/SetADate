@@ -88,6 +88,32 @@ extension NSDate {
             return nil
         }
     }
+    
+    func dateString (calendar: NSCalendar) -> String {
+
+        let months = ["Jan" , "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+        let components = calendar.dayMonthYearComponentsFromDate(self)
+        let monthNumber = components.month
+        let month = months[monthNumber]
+        let day = components.day
+        let year = components.year
+        let returnString = String(day) + " " + month + " " + String(year)
+        
+        return returnString
+    }
+    
+    func timeString (calendar: NSCalendar) -> String {
+        let components = calendar.components(.Hour, fromDate: self)
+        components.minute = calendar.component(.Minute, fromDate: self)
+        let hour = String(components.hour % 12)
+        var minute = components.minute == 0 ? "" : String(components.minute)
+        if components.minute < 10 {
+            minute = "0" + minute
+        }
+        let returnString = components.hour < 12 ? hour + minute + "am" : hour + minute + "pm"
+        return returnString
+    }
+
 }
 
 extension NSCalendar {

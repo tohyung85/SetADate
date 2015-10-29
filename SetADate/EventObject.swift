@@ -14,17 +14,19 @@ class EventObject : NSObject {
     var eventLocation : String?
     var eventStartDate : NSDate?
     var eventEndDate : NSDate?
+    var isFullDay : Bool?
     var alerts : [String : Int]?
     var repeats : [String : Int]?
     var notes : String?
     
     
-    init (eventTitle: String, eventLocation: String, eventStartDate: NSDate, eventEndDate: NSDate, alerts: [String : Int], repeats: [String: Int], notes: String) {
+    init (eventTitle: String, eventLocation: String, eventStartDate: NSDate, eventEndDate: NSDate, isFullDay : Bool, alerts: [String : Int], repeats: [String: Int], notes: String) {
         super.init()
         self.eventTitle = eventTitle
         self.eventLocation = eventLocation
         self.eventStartDate = eventStartDate
         self.eventEndDate = eventEndDate
+        self.isFullDay = isFullDay
         self.alerts = alerts
         self.repeats = repeats
         self.notes = notes

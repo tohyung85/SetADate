@@ -25,6 +25,19 @@ class CalendarScreenViewController: UIViewController, UITabBarDelegate{
         super.viewDidLoad()
         selectionBar.delegate = self
         performTabBarConfigurations()
+        
+        // To remove shadow image of navigation view controller and hence the underline of the bar
+        for parent in self.navigationController!.navigationBar.subviews {
+            for childView in parent.subviews {
+                if(childView is UIImageView) {
+                    childView.removeFromSuperview()
+                }
+            }
+        }
+        
+//        self.navigationItem.title = "Add Attendees"
+        let barButton = UIBarButtonItem(title: "Settings", style: .Done, target: self, action: "settingsButtonPressed:")
+        self.navigationItem.rightBarButtonItem = barButton
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -61,6 +74,10 @@ class CalendarScreenViewController: UIViewController, UITabBarDelegate{
         }
         tabBar.selectedItem = item
 
+    }
+    
+    func settingsButtonPressed () {
+        print("settings")
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

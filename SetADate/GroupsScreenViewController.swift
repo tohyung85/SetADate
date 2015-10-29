@@ -39,9 +39,6 @@ class GroupsScreenViewController: UIViewController, UITableViewDataSource, UITab
                 print("error")
                 print(err)
             }
-            if let store = self.store {
-                print("store loaded: %@", store)
-            }
             print("Contacts access authorised")
         case .NotDetermined:
             contactStore.requestAccessForEntityType(.Contacts, completionHandler: {(Bool, NSError) in
@@ -63,10 +60,10 @@ class GroupsScreenViewController: UIViewController, UITableViewDataSource, UITab
         
         self.calendar = NSCalendar.currentCalendar()
         let today = NSDate()
-        let components = self.calendar!.dayMonthYearComponentsFromDate(today)
-        components.day += 1
-        let tomorrow = self.calendar?.dateFromComponents(components)
-        let event = EventObject (eventTitle: "Assemble", eventLocation: "Stark Tower", eventStartDate: today, eventEndDate: tomorrow!, alerts: ["Every Week" : 60 * 24 * 7], repeats: ["Every Week" : 60 * 24 * 7], notes: "NA")
+        let components = NSDateComponents()
+        components.hour = 1
+        let tomorrow = self.calendar?.dateByAddingComponents(components, toDate: today, options: [])
+        let event = EventObject (eventTitle: "Assemble", eventLocation: "Stark Tower", eventStartDate: today, eventEndDate: tomorrow!, isFullDay: false, alerts: ["Every Week" : 60 * 24 * 7], repeats: ["Every Week" : 60 * 24 * 7], notes: "NA")
         let group = Group(name: "Avengers", contacts: self.store!)
         group.events = [event]
         self.groupStore = GroupStore(groups: [group])
@@ -98,6 +95,15 @@ class GroupsScreenViewController: UIViewController, UITableViewDataSource, UITab
         let cellIdentifier = "groupsScreenCell"
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) as! GroupsScreenTableCell
         let group = self.groupStore?.groups[indexPath.row]
+        if let events = group?.events {
+            let event = events.last
+            cell.dateLabel.text = event?.eventStartDate?.dateString(self.calendar!)
+            cell.timeLabel.text = (event?.isFullDay)! == true ? "Full Day" : (event?.eventStartDate?.timeString(self.calendar!))! + " - " + (event?.eventEndDate?.timeString(self.calendar!))!
+            cell.locationLabel.text = event?.eventLocation
+            let image = UIImage(named: "groupsImage")
+            print("%@",image)
+            cell.groupImage.image = image
+        }
         cell.groupNameLabel.text = group?.name
         return cell
         
