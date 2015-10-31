@@ -44,6 +44,7 @@
 		8B9344791BD1C00F0099AC16 /* AddGroupsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9344781BD1C00F0099AC16 /* AddGroupsViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		8BA31D0C1BD7C90500EC190C /* ContactsSelectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA31D0B1BD7C90500EC190C /* ContactsSelectionCell.swift */; settings = {ASSET_TAGS = (); }; };
 		8BA31D0E1BD7CDF900EC190C /* InitialAddAttendeesTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA31D0D1BD7CDF900EC190C /* InitialAddAttendeesTableCell.swift */; settings = {ASSET_TAGS = (); }; };
+		8BD059E81BE4BAF3004D2E98 /* IndividualGroupScreenCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD059E71BE4BAF2004D2E98 /* IndividualGroupScreenCell.swift */; settings = {ASSET_TAGS = (); }; };
 		8BD852B81BE44FA100D05305 /* IndividualGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD852B71BE44FA100D05305 /* IndividualGroupViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		8BD852BA1BE46DD700D05305 /* TitleSubtitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD852B91BE46DD700D05305 /* TitleSubtitleView.swift */; settings = {ASSET_TAGS = (); }; };
 		8BE3B2361BD361DD00FF0E99 /* InitialAddAttendeesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BE3B2351BD361DD00FF0E99 /* InitialAddAttendeesViewController.swift */; settings = {ASSET_TAGS = (); }; };
@@ -110,6 +111,7 @@
 		8B9344781BD1C00F0099AC16 /* AddGroupsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddGroupsViewController.swift; sourceTree = "<group>"; };
 		8BA31D0B1BD7C90500EC190C /* ContactsSelectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsSelectionCell.swift; sourceTree = "<group>"; };
 		8BA31D0D1BD7CDF900EC190C /* InitialAddAttendeesTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InitialAddAttendeesTableCell.swift; sourceTree = "<group>"; };
+		8BD059E71BE4BAF2004D2E98 /* IndividualGroupScreenCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndividualGroupScreenCell.swift; sourceTree = "<group>"; };
 		8BD852B71BE44FA100D05305 /* IndividualGroupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndividualGroupViewController.swift; sourceTree = "<group>"; };
 		8BD852B91BE46DD700D05305 /* TitleSubtitleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TitleSubtitleView.swift; sourceTree = "<group>"; };
 		8BE3B2351BD361DD00FF0E99 /* InitialAddAttendeesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InitialAddAttendeesViewController.swift; sourceTree = "<group>"; };
@@ -195,6 +197,7 @@
 				8BD852B71BE44FA100D05305 /* IndividualGroupViewController.swift */,
 				8BD852B91BE46DD700D05305 /* TitleSubtitleView.swift */,
 				8B33D5911BE10276003750B5 /* GroupsScreenTableCell.swift */,
+				8BD059E71BE4BAF2004D2E98 /* IndividualGroupScreenCell.swift */,
 				8B4E64F11BC2A5B800723576 /* PendingRequestsViewController.swift */,
 				8B65394B1BB7C68D0061BF86 /* CalendarViewController.swift */,
 				8B9344731BD1BD980099AC16 /* CalendarAndCalendarTable */,
@@ -421,6 +424,7 @@
 				8B61C7881BCFD4820049EE17 /* StartEndDateCell.swift in Sources */,
 				8B887D641BC8FDC3009FB4AC /* EventTitleLocationTableViewCell.swift in Sources */,
 				8BE3B2361BD361DD00FF0E99 /* InitialAddAttendeesViewController.swift in Sources */,
+				8BD059E81BE4BAF3004D2E98 /* IndividualGroupScreenCell.swift in Sources */,
 				8B33D58C1BE0FB23003750B5 /* Group.swift in Sources */,
 				8B0F49A71BBAC0CB005A1CC2 /* Extensions.swift in Sources */,
 				8B851FE81BC5666C0054D0FB /* CreateEventViewController.swift in Sources */,
