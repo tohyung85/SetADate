@@ -18,6 +18,7 @@ class GroupsScreenViewController: UIViewController, UITableViewDataSource, UITab
     var calendar : NSCalendar?
     let contactStore = CNContactStore()
     var store : [CNContact]?
+    var groupTapped : Group?
     
     override func viewDidLoad() {
         self.store = [CNContact]()
@@ -100,15 +101,16 @@ class GroupsScreenViewController: UIViewController, UITableViewDataSource, UITab
             cell.dateLabel.text = event?.eventStartDate?.dateString(self.calendar!)
             cell.timeLabel.text = (event?.isFullDay)! == true ? "Full Day" : (event?.eventStartDate?.timeString(self.calendar!))! + " - " + (event?.eventEndDate?.timeString(self.calendar!))!
             cell.locationLabel.text = event?.eventLocation
-            let image = UIImage(named: "groupsImage")
-            print("%@",image)
+            let image = UIImage(named: "testImage")
             cell.groupImage.image = image
         }
         cell.groupNameLabel.text = group?.name
         return cell
-        
     }
     
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.deselectRowAtIndexPath(indexPath, animated: false)
+    }
     
     
     @IBAction func newGroupButtonPressed(sender: UIButton) {
@@ -117,5 +119,14 @@ class GroupsScreenViewController: UIViewController, UITableViewDataSource, UITab
     @IBAction func editButtonPressed(sender: UIButton) {
     }
     
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        let segueIdentifier = segue.identifier
+        if segueIdentifier == "individualGroupView" {
+            let cell = sender as! GroupsScreenTableCell
+            let indexPath = self.groupsTable.indexPathForCell(cell)
+            let destinationVC = segue.destinationViewController as! IndividualGroupViewController
+            destinationVC.group = self.groupStore?.groups[(indexPath?.row)!]
+        }
+    }
     
 }

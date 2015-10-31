@@ -947,7 +947,7 @@
                                             <outlet property="groupNameLabel" destination="aj2-Xs-g6s" id="ycF-9G-Kv5"/>
                                             <outlet property="locationLabel" destination="dF3-U5-gzG" id="qg5-LP-vR1"/>
                                             <outlet property="timeLabel" destination="tsi-Q1-IFy" id="Vag-fE-og2"/>
-                                            <segue destination="A1c-ad-obZ" kind="show" id="8hT-CX-qGG"/>
+                                            <segue destination="A1c-ad-obZ" kind="show" identifier="individualGroupView" id="8hT-CX-qGG"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -965,10 +965,10 @@
             </objects>
             <point key="canvasLocation" x="639" y="1227.5"/>
         </scene>
-        <!--View Controller-->
+        <!--Individual Group View Controller-->
         <scene sceneID="gOj-vh-Uaj">
             <objects>
-                <viewController id="A1c-ad-obZ" sceneMemberID="viewController">
+                <viewController id="A1c-ad-obZ" customClass="IndividualGroupViewController" customModule="SetADate" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="eqK-ZV-iiJ"/>
                         <viewControllerLayoutGuide type="bottom" id="gXP-m9-q9V"/>
@@ -980,7 +980,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Add group vc" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X5E-Wj-Hbl">
                                 <rect key="frame" x="125" y="188" width="103" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -991,6 +991,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="v8m-DE-09Q" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1122" y="1275"/>
+        </scene>
+        <!--groupDetailsVC-->
+        <scene sceneID="6a6-he-PTk">
+            <objects>
+                <viewController storyboardIdentifier="groupDetailsVC" title="groupDetailsVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="E75-nI-qHd" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="DVS-zv-eFS"/>
+                        <viewControllerLayoutGuide type="bottom" id="gzY-qm-U6f"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Uav-TJ-obs">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2VC-vT-2zx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1601" y="1275"/>
         </scene>
         <!--Pending Requests View Controller-->
         <scene sceneID="SiX-6F-idB">
